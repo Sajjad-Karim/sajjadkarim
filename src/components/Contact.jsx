@@ -12,7 +12,7 @@ const Contact = () => {
   const formRef = useRef();
   const [form, setForm] = useState({
     name: "",
-    
+
     email: "",
     message: "",
   });
@@ -34,16 +34,16 @@ const Contact = () => {
     setLoading(true);
     emailjs
       .send(
-        "service_gg6a24d",
-        "template_lbw6jyz",
+        "service_h194ygk",
+        "template_mtya7la",
         {
           from_name: form.name,
-          to_name: "Adem",
+          to_name: "Sajjad",
           from_email: form.email,
-          to_email: "adem.bahri@enis.tn",
+          to_email: "sajukarim76@gmailo.com",
           message: form.message,
         },
-        "53sRScqH9-I5iMdtW"
+        "Yx5VuZ-kpwxVtupr2"
       )
       .then(
         () => {
