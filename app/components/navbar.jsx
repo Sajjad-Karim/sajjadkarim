@@ -79,7 +79,7 @@ function Navbar() {
             <Link
               className="block px-4 py-2 no-underline outline-none hover:no-underline"
               target="_blank"
-              href="https://drive.google.com/file/d/1VYd4NcmyUYKhbSMy1dzug5uMtdRYR5P-/view"
+              href="https://drive.google.com/file/d/1zPOVIqkRic2IPQJ_WZyHscWCVG9RC3kr/view"
             >
               <div className="text-sm text-white transition-colors duration-300 hover:text-pink-600">
                 RESUME
