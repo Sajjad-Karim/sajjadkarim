@@ -3,7 +3,10 @@ import Image from "next/image";
 
 import { educations } from "@/utils/data/educations";
 import { BsPersonWorkspace } from "react-icons/bs";
-import AnimationLottie from "../../helper/animation-lottie";
+import dynamic from "next/dynamic";
+const AnimationLottie = dynamic(() => import("../../helper/animation-lottie"), {
+  ssr: false,
+});
 import GlowCard from "../../helper/glow-card";
 import lottieFile from "@/public/lottie/study.json";
 
@@ -39,9 +42,10 @@ function Education() {
       <div className="py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           <div className="flex justify-center items-start">
-            {/* <div className="w-3/4 h-3/4">
+            <div className="w-3/4 h-3/4">
               <AnimationLottie animationPath={lottieFile} />
-            </div> */}
+              {/* //this is loo */}
+            </div>
           </div>
 
           <div>
