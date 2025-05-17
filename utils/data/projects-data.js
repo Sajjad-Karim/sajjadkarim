@@ -6,46 +6,46 @@ import travel from "/public/image/travel.jpg";
 export const projectsData = [
   {
     id: 1,
+    name: "Mother of Peace",
+    description:
+      "Mother of Peace is an innovative AI-powered application designed to provide users with spiritual guidance, community engagement, and interactive learning. The app features True Mother, an AI chatbot trained on the book Mother of Peace using GPT technology, allowing users to ask questions and receive responses based on the texts teachings. The platform offers a social community where users can connect with friends, create groups, share posts, comment, and engage in meaningful discussions, blending the best aspects of social networks like Facebook and Snapchat with gamified elements",
+    tools: ["Javascript", "NextJs", "MongoDB", "RTK"],
+    role: "Full Stack Developer",
+    code: "",
+    demo: "https://motherofpeace.ai/",
+    image: crefin,
+  },
+  {
+    id: 2,
+    name: "Start Visual",
+    description:
+      "Start Visual — your new go-to space to showcase portfolios and elevate brand presence! Whether you are a creative professional, an agency, or a startup, Start Visual helps you: Highlight your best work, Build a strong visual identity, Promote your brand with style and ease, Built to be sleek, responsive, and highly customizable.",
+    tools: ["Javascript", "ReactJs", "NodeJs", "Express", "MongoDB"],
+    role: "Full Stack Developer",
+    code: "",
+    demo: "https://start-visual.xyz/",
+    image: crefin,
+  },
+  {
+    id: 3,
     name: "IndChess",
     description:
       "Indchess – Your Gateway to India’s Chess Community, Tournaments & Daily Puzzles",
-    tools: ["Javascript", "ReactJs", "NodeJs", "ExpressJs", "EJS", "MongoDB"],
+    tools: [
+      "Javascript",
+      "ReactJs",
+      "NodeJs",
+      "ExpressJs",
+      "EJS",
+      "SQL",
+      "MongoDB",
+    ],
     role: "MERN Developer",
     code: "",
     demo: "https://indchess.in/",
     image: crefin,
   },
-  {
-    id: 2,
-    name: "xNFTs Marketplace",
-    description:
-      "Developed server-side for the decentralized marketplace for buying, selling, and trading XNFTs, designed database schema, and created REST APIs ensuring authentication and authorization.",
-    tools: ["Javascript", "React JS ", "Redux Toolkit", "Material Ui"],
-    role: "Frontend Developer",
-    code: "",
-    demo: "https://xnfts.ai/",
-    image: crefin,
-  },
-  {
-    id: 3,
-    name: "Ygeian",
-    description:
-      "Ygeian is a premier online platform delivering high-quality medical content curated from leading doctors, renowned clinics, and world-class hospitals. Designed to foster a community of healthcare professionals, it provides valuable resources that inspire, educate, and connect practitioners worldwide. Let me know if you want any refinements!",
-    tools: [
-      "Javascript",
-      "React Js",
-      "Material Ui",
-      "Redux Toolkit",
-      "Nodejs",
-      "ExpressJs",
-      "MongoDB",
-      "MySQL",
-    ],
-    role: "Mern Developer",
-    code: "",
-    demo: "https://ygeian.vercel.app/",
-    image: travel,
-  },
+
   {
     id: 4,
     name: "Ninfa",
