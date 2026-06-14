@@ -68,7 +68,7 @@ export default function RootLayout({ children }) {
             <Navbar />
             <main
               id="main-content"
-              className="relative z-content min-h-screen w-full"
+              className="relative z-content min-h-screen w-full pt-[var(--nav-clearance)]"
             >
               {children}
               <ScrollToTopLazy />

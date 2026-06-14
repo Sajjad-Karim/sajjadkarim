@@ -1,20 +1,28 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import NavLink from "./nav-link";
 import NavCta from "./nav-cta";
-import { navCta, navLinks, navSecondaryAction } from "@/config/navigation";
+import NavUpwork from "./nav-upwork";
+import { navCta, navLinks } from "@/config/navigation";
 
 function MobileMenu({
   open,
   onClose,
   activeSectionId,
+  pathname,
   onNavigate,
 }) {
   const panelRef = useRef(null);
   const closeButtonRef = useRef(null);
+
+  const isLinkActive = (link) => {
+    if (link.href === "/blog") {
+      return pathname.startsWith("/blog");
+    }
+    return activeSectionId === link.sectionId;
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -57,59 +65,41 @@ function MobileMenu({
 
   return (
     <div
-      className={cn(
-        "fixed inset-0 z-drawer lg:hidden",
-        open ? "pointer-events-auto" : "pointer-events-none"
-      )}
+      className={cn("nav-mobile lg:hidden", open && "nav-mobile--open")}
       aria-hidden={!open}
     >
-      {/* Backdrop */}
       <div
-        className={cn(
-          "absolute inset-0 bg-overlay transition-opacity duration-slow ease-out",
-          open ? "opacity-100" : "opacity-0"
-        )}
+        className="nav-mobile__backdrop"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      {/* Panel */}
       <div
         ref={panelRef}
         id="mobile-navigation"
         role="dialog"
         aria-modal="true"
         aria-label="Navigation menu"
-        className={cn(
-          "absolute inset-y-0 right-0 flex w-full max-w-sm flex-col",
-          "border-l border-border bg-neutral-900/95 backdrop-blur-xl",
-          "transition-transform duration-slow ease-out motion-reduce:transition-none",
-          open ? "translate-x-0" : "translate-x-full"
-        )}
+        className="nav-mobile__sheet"
       >
-        <div className="flex items-center justify-between border-b border-border px-6 py-5">
-          <span className="type-eyebrow text-muted">Menu</span>
+        <div className="nav-mobile__header">
+          <span className="type-mono text-mono-xs text-muted">Navigate</span>
           <button
             ref={closeButtonRef}
             type="button"
             onClick={onClose}
             aria-label="Close navigation menu"
-            className={cn(
-              "flex h-10 w-10 items-center justify-center rounded-full",
-              "border border-border text-neutral-300",
-              "transition-hover focus-ring",
-              "hover:border-border-strong hover:text-neutral-100"
-            )}
+            className="nav-menu-trigger nav-menu-trigger--open"
           >
             <svg
-              width="18"
-              height="18"
-              viewBox="0 0 18 18"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
               fill="none"
               aria-hidden="true"
             >
               <path
-                d="M4 4L14 14M14 4L4 14"
+                d="M3.5 3.5L12.5 12.5M12.5 3.5L3.5 12.5"
                 stroke="currentColor"
                 strokeWidth="1.5"
                 strokeLinecap="round"
@@ -118,62 +108,50 @@ function MobileMenu({
           </button>
         </div>
 
-        <nav
-          aria-label="Mobile navigation"
-          className="flex flex-1 flex-col overflow-y-auto px-6 py-8"
-        >
-          <ul className="flex flex-col gap-1">
+        <nav aria-label="Mobile navigation" className="nav-mobile__body">
+          <ul className="nav-mobile__list">
             {navLinks.map((link, index) => (
               <li
-                key={link.sectionId}
+                key={link.href}
                 className={cn(
                   "mobile-nav-item",
                   open && "mobile-nav-item-visible"
                 )}
-                style={{ transitionDelay: open ? `${index * 40 + 80}ms` : "0ms" }}
+                style={{
+                  transitionDelay: open ? `${index * 40 + 60}ms` : "0ms",
+                }}
               >
                 <NavLink
                   href={link.href}
                   label={link.label}
-                  isActive={activeSectionId === link.sectionId}
+                  isActive={isLinkActive(link)}
                   onClick={handleNavigate}
                   mobile
-                  className="pl-4"
                 />
               </li>
             ))}
           </ul>
-
-          <div
-            className={cn(
-              "mt-auto flex flex-col gap-3 border-t border-border pt-8",
-              "mobile-nav-item",
-              open && "mobile-nav-item-visible"
-            )}
-            style={{ transitionDelay: open ? `${navLinks.length * 40 + 120}ms` : "0ms" }}
-          >
-            <NavCta
-              href={navCta.href}
-              label={navCta.label}
-              onClick={handleNavigate}
-              className="w-full justify-center"
-            />
-            <Link
-              href={navSecondaryAction.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={handleNavigate}
-              className={cn(
-                "type-button flex h-10 w-full items-center justify-center rounded-full",
-                "border border-border text-body-sm text-neutral-300",
-                "transition-hover focus-ring",
-                "hover:border-border-strong hover:text-neutral-100"
-              )}
-            >
-              {navSecondaryAction.label}
-            </Link>
-          </div>
         </nav>
+
+        <div
+          className={cn(
+            "nav-mobile__footer",
+            "mobile-nav-item",
+            open && "mobile-nav-item-visible"
+          )}
+          style={{
+            transitionDelay: open
+              ? `${navLinks.length * 40 + 100}ms`
+              : "0ms",
+          }}
+        >
+          <NavUpwork className="nav-upwork--center" />
+          <NavCta
+            href={navCta.href}
+            label={navCta.label}
+            onClick={handleNavigate}
+          />
+        </div>
       </div>
     </div>
   );

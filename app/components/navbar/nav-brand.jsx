@@ -5,18 +5,16 @@ function NavBrand({ className }) {
   return (
     <Link
       href="/"
-      className={cn(
-        "group flex shrink-0 items-center gap-2.5 focus-ring rounded-sm",
-        className
-      )}
+      className={cn("nav-brand focus-ring", className)}
       aria-label="Sajjad Karim — Home"
     >
-      <span
-        className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary transition-transform duration-normal ease-out group-hover:scale-125"
-        aria-hidden="true"
-      />
-      <span className="font-display text-lg tracking-tight text-neutral-100 transition-colors duration-normal ease-out group-hover:text-primary sm:text-xl">
-        Sajjad Karim
+      <span className="nav-brand__mark" aria-hidden="true">
+        <span className="nav-brand__monogram">SK</span>
+        <span className="nav-brand__pulse" />
+      </span>
+      <span className="nav-brand__copy">
+        <span className="nav-brand__name">Sajjad Karim</span>
+        <span className="nav-brand__role">Product Engineer</span>
       </span>
     </Link>
   );

@@ -19,7 +19,7 @@ export const sectionIds = navLinks
   .filter(Boolean);
 
 export const navCta = {
-  label: "Hire me",
+  label: "Hire Me",
   href: "/#contact",
   sectionId: "contact",
 };

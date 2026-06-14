@@ -9,7 +9,7 @@ function HeroSection() {
     <section
       id="hero"
       aria-label="Introduction"
-      className="relative flex min-h-[calc(100svh-4.5rem)] flex-col justify-center overflow-hidden pb-16 pt-8 md:pt-12 lg:min-h-[calc(100svh-5rem)] lg:pb-20 lg:pt-16"
+      className="relative -mt-[var(--nav-clearance)] flex min-h-[100svh] flex-col justify-center overflow-hidden pb-16 pt-[var(--hero-padding-top)] lg:pb-20"
     >
       <HeroBackground />
 

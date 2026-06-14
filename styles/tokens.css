@@ -66,6 +66,32 @@
   --glass-border: rgba(255, 255, 255, 0.06);
   --glass-blur: 20px;
 
+  /* ─── Floating navigation ─── */
+  --nav-float-width: min(82vw, 68rem);
+  --nav-float-inset-y: 0.875rem;
+  --nav-float-radius: 9999px;
+  --nav-float-height: 3.625rem;
+  --nav-float-height-compact: 3.25rem;
+  --nav-clearance: calc(var(--nav-float-inset-y) + var(--nav-float-height));
+  --hero-nav-gap: 1.5rem;
+  --hero-padding-top: calc(var(--nav-clearance) + var(--hero-nav-gap));
+  --nav-float-bg-top: rgba(255, 255, 255, 0.04);
+  --nav-float-bg-hero: rgba(255, 255, 255, 0.03);
+  --nav-float-bg-scrolled: rgba(12, 15, 20, 0.72);
+  --nav-float-blur-top: 12px;
+  --nav-float-blur-hero: 14px;
+  --nav-float-blur-scrolled: 16px;
+  --nav-float-border-top: rgba(255, 255, 255, 0.1);
+  --nav-float-border-hero: rgba(255, 255, 255, 0.12);
+  --nav-float-border-scrolled: rgba(255, 255, 255, 0.11);
+  --nav-float-shadow-top: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  --nav-float-shadow-hero: 0 1px 0 rgba(255, 255, 255, 0.08) inset;
+  --nav-float-shadow-scrolled: 0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 4px 24px rgba(0, 0, 0, 0.18),
+    0 0 0 1px rgba(61, 255, 184, 0.04);
+  --nav-float-scale-top: 1;
+  --nav-float-scale-scrolled: 0.992;
+
   /* ─── Gradients ─── */
   --gradient-hero: radial-gradient(
       ellipse 80% 60% at 50% -20%,

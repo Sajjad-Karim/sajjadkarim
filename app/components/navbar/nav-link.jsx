@@ -17,31 +17,14 @@ function NavLink({
       onClick={onClick}
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "group relative focus-ring rounded-sm",
-        mobile
-          ? "block py-3 text-heading-sm text-neutral-200"
-          : "px-3 py-2 text-body-sm text-neutral-400",
-        "transition-hover",
-        isActive ? "text-primary" : "hover:text-neutral-100",
+        "nav-link focus-ring",
+        mobile && "nav-link--mobile",
+        isActive && "nav-link--active",
         className
       )}
     >
-      <span className="relative z-10">{label}</span>
-      {!mobile && (
-        <span
-          className={cn(
-            "absolute bottom-1 left-3 right-3 h-px origin-center scale-x-0 bg-primary transition-transform duration-normal ease-out group-hover:scale-x-100",
-            isActive && "scale-x-100"
-          )}
-          aria-hidden="true"
-        />
-      )}
-      {mobile && isActive && (
-        <span
-          className="absolute left-0 top-1/2 h-6 w-0.5 -translate-y-1/2 rounded-full bg-primary"
-          aria-hidden="true"
-        />
-      )}
+      <span className="nav-link__pill" aria-hidden="true" />
+      <span className="nav-link__label">{label}</span>
     </Link>
   );
 }
