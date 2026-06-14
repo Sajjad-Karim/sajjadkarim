@@ -1,0 +1,194 @@
+/* ─── Projects / Product showcase section ─── */
+
+@keyframes projects-filter-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ─── Background ─── */
+.projects-bg__wash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 45% at 70% 25%,
+    rgba(139, 92, 246, 0.05),
+    transparent 55%
+  );
+}
+
+.projects-bg__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.projects-bg__glow--top {
+  width: 22rem;
+  height: 22rem;
+  right: -5%;
+  top: 10%;
+  background: var(--color-secondary-muted);
+  opacity: 0.45;
+}
+
+.projects-bg__glow--bottom {
+  width: 18rem;
+  height: 18rem;
+  left: -3%;
+  bottom: 15%;
+  background: var(--color-primary-muted);
+  opacity: 0.35;
+}
+
+/* ─── Featured project ─── */
+.projects-featured {
+  transition:
+    border-color var(--duration-slow) var(--ease-out),
+    box-shadow var(--duration-slow) var(--ease-out);
+}
+
+.projects-featured:hover {
+  border-color: rgba(61, 255, 184, 0.15);
+  box-shadow: var(--shadow-glow-primary);
+}
+
+.projects-featured__mockup-screen {
+  transition: box-shadow var(--duration-slow) var(--ease-out);
+}
+
+.projects-featured:hover .projects-featured__mockup-screen {
+  box-shadow: var(--shadow-strong);
+}
+
+/* ─── Case study pipeline ─── */
+.projects-case__track {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.projects-case__track::-webkit-scrollbar {
+  display: none;
+}
+
+.projects-case__card {
+  position: relative;
+}
+
+.projects-case__connector {
+  position: absolute;
+  top: 50%;
+  right: -0.625rem;
+  width: 0.625rem;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(61, 255, 184, 0.45),
+    rgba(61, 255, 184, 0.1)
+  );
+  transform: translateY(-50%);
+}
+
+.projects-case__connector::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 3px solid transparent;
+  border-left-color: rgba(61, 255, 184, 0.35);
+}
+
+.projects-case__card:hover {
+  box-shadow: var(--shadow-soft);
+  border-color: rgba(61, 255, 184, 0.12);
+}
+
+html.reveal-enhanced [data-reveal="on"]:not(.is-revealed) .projects-case__step {
+  opacity: 0;
+}
+
+html.reveal-enhanced [data-reveal="on"].is-revealed .projects-case__step {
+  animation: section-reveal var(--duration-slower) var(--ease-out) forwards;
+  animation-delay: calc(var(--case-index, 0) * 60ms + 400ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.reveal-enhanced [data-reveal="on"]:not(.is-revealed) .projects-case__step,
+  html.reveal-enhanced [data-reveal="on"].is-revealed .projects-case__step {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* ─── Case study cards ─── */
+.projects-case-study {
+  transition:
+    border-color var(--duration-slow) var(--ease-out),
+    box-shadow var(--duration-slow) var(--ease-out);
+}
+
+/* ─── A2P showcase ─── */
+.projects-a2p__examples a {
+  min-height: 4.5rem;
+}
+
+/* ─── Showcase bento ─── */
+.projects-showcase__bento {
+  align-items: stretch;
+}
+
+.projects-showcase__item--wide {
+  grid-column: 1 / -1;
+}
+
+/* ─── Archive cards ─── */
+.projects-archive-card .group:hover {
+  box-shadow: var(--shadow-glow-primary);
+}
+
+.projects-archive-card__visual {
+  isolation: isolate;
+}
+
+/* ─── Browser / filter (legacy) ─── */
+.projects-browser__filter {
+  cursor: pointer;
+}
+
+.projects-browser__item {
+  animation: projects-filter-in var(--duration-normal) var(--ease-out) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-browser__item {
+    animation: none;
+  }
+}
+
+/* ─── Project cards ─── */
+.projects-card .group:hover {
+  box-shadow: var(--shadow-glow-primary);
+}
+
+.projects-card__visual {
+  isolation: isolate;
+}
+
+/* ─── CTA ─── */
+.projects-cta__panel {
+  transition:
+    border-color var(--duration-slow) var(--ease-out),
+    box-shadow var(--duration-slow) var(--ease-out);
+}
+
+.projects-cta__panel:hover {
+  border-color: rgba(61, 255, 184, 0.2);
+  box-shadow: var(--shadow-medium);
+}

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" role="img" aria-label="Sajjad Karim">
+  <rect width="32" height="32" rx="8" fill="#0A0C10"/>
+  <path
+    d="M16 6.5a9.5 9.5 0 0 1 9.5 9.5"
+    stroke="#3DFFB8"
+    stroke-width="2.25"
+    stroke-linecap="round"
+  />
+  <path
+    d="M16 25.5a9.5 9.5 0 0 1-9.5-9.5"
+    stroke="#3DFFB8"
+    stroke-width="2.25"
+    stroke-linecap="round"
+    opacity="0.45"
+  />
+  <path
+    d="M12.2 11.2c0-1.4 1.1-2.3 3.3-2.3 2 0 3.2.8 3.2 2.1 0 1-.5 1.6-1.8 2l-1.4.5c-1.5.5-2.2 1.3-2.2 2.6 0 1.7 1.4 2.8 3.6 2.8 2.1 0 3.6-.9 3.8-2.5h-2.4c-.1.7-.8 1.1-1.6 1.1-.9 0-1.4-.4-1.4-1 0-.5.3-.8 1.2-1.1l1.5-.5c1.8-.6 2.7-1.6 2.7-3.2 0-2.1-1.7-3.4-4.4-3.4-2.5 0-4.2 1.2-4.3 3.1h2.3z"
+    fill="#3DFFB8"
+  />
+  <circle cx="24.5" cy="24.5" r="2" fill="#3DFFB8"/>
+</svg>

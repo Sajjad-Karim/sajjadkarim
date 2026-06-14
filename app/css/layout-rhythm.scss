@@ -1,0 +1,73 @@
+/**
+ * Layout rhythm — consistent subsection spacing and bento grid primitives.
+ */
+
+:root {
+  --space-section: 3.5rem;
+  --space-section-lg: 5rem;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --space-section: 4rem;
+    --space-section-lg: 6rem;
+  }
+}
+
+.section-block {
+  margin-top: var(--space-section);
+}
+
+@media (min-width: 1024px) {
+  .section-block {
+    margin-top: var(--space-section-lg);
+  }
+}
+
+.bento-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .bento-grid {
+    gap: 1.25rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bento-grid__span-4 {
+    grid-column: span 4;
+  }
+
+  .bento-grid__span-6 {
+    grid-column: span 6;
+  }
+
+  .bento-grid__span-8 {
+    grid-column: span 8;
+  }
+
+  .bento-grid__span-12 {
+    grid-column: span 12;
+  }
+
+  .bento-grid__row-2 {
+    grid-row: span 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bento-grid--center-tail .bento-grid__tail-start {
+    grid-column-start: 3;
+  }
+}

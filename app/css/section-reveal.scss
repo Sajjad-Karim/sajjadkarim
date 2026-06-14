@@ -1,0 +1,36 @@
+/* ─── Shared scroll-reveal animation system for all homepage sections ─── */
+/* Content is visible by default (SSR / no-JS safe). Hidden only after JS mounts. */
+
+@keyframes section-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html.reveal-enhanced [data-reveal="on"]:not(.is-revealed) .section-reveal {
+  opacity: 0;
+}
+
+html.reveal-enhanced [data-reveal="on"].is-revealed .section-reveal {
+  animation: section-reveal var(--duration-slower) var(--ease-out) forwards;
+}
+
+html.reveal-enhanced [data-reveal="on"].is-revealed .section-stagger-1 { animation-delay: 0ms; }
+html.reveal-enhanced [data-reveal="on"].is-revealed .section-stagger-2 { animation-delay: 80ms; }
+html.reveal-enhanced [data-reveal="on"].is-revealed .section-stagger-3 { animation-delay: 160ms; }
+html.reveal-enhanced [data-reveal="on"].is-revealed .section-stagger-4 { animation-delay: 240ms; }
+html.reveal-enhanced [data-reveal="on"].is-revealed .section-stagger-5 { animation-delay: 320ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.reveal-enhanced [data-reveal="on"]:not(.is-revealed) .section-reveal,
+  html.reveal-enhanced [data-reveal="on"].is-revealed .section-reveal {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

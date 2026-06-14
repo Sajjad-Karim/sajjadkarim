@@ -1,94 +1,70 @@
 "use client";
-import Image from "next/image";
 
-import { educations } from "@/utils/data/educations";
-import { BsPersonWorkspace } from "react-icons/bs";
 import dynamic from "next/dynamic";
+import { BsPersonWorkspace } from "react-icons/bs";
+import { Section } from "@/app/components/layout/section";
+import { educations } from "@/utils/data/educations";
+import GlowCard from "../../helper/glow-card";
+import lottieFile from "@/public/lottie/lotti.json";
+import "@/app/css/card.scss";
+
 const AnimationLottie = dynamic(() => import("../../helper/animation-lottie"), {
   ssr: false,
 });
-import GlowCard from "../../helper/glow-card";
-import lottieFile from "@/public/lottie/study.json";
 
 function Education() {
   return (
-    <div
+    <Section
       id="education"
-      className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]"
+      aria-label="Education and academic background"
+      containerVariant="content"
     >
-      <Image
-        src="/section.svg"
-        alt="Hero"
-        width={1572}
-        height={795}
-        className="absolute top-0 -z-10"
-      />
-      <div className="flex justify-center -translate-y-[1px]">
-        <div className="w-3/4">
-          <div className="h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent  w-full" />
+      <header className="mb-10 max-w-reading lg:mb-12">
+        <p className="type-eyebrow mb-4">Background</p>
+        <h2 className="type-h2 text-balance text-neutral-0">Education</h2>
+        <p className="mt-4 text-body-lg text-pretty text-muted">
+          Formal training that grounded the engineering craft.
+        </p>
+      </header>
+
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] lg:items-start lg:gap-12 xl:grid-cols-[minmax(0,18rem)_minmax(0,1fr)]">
+        <div className="mx-auto w-full max-w-[16rem] lg:sticky lg:top-24 lg:mx-0">
+          <AnimationLottie animationPath={lottieFile} />
         </div>
-      </div>
 
-      <div className="flex justify-center my-5 lg:py-8">
-        <div className="flex  items-center">
-          <span className="w-24 h-[2px] bg-[#1a1443]"></span>
-          <span className="bg-[#1a1443] w-fit text-white p-2 px-5 text-xl rounded-md">
-            Educations
-          </span>
-          <span className="w-24 h-[2px] bg-[#1a1443]"></span>
-        </div>
-      </div>
-
-      <div className="py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
-          <div className="flex justify-center items-start">
-            <div className="w-3/4 h-3/4">
-              <AnimationLottie animationPath={lottieFile} />
-              {/* //this is loo */}
-            </div>
-          </div>
-
-          <div>
-            <div className="flex flex-col gap-6">
-              {educations.map((education) => (
-                <GlowCard
-                  key={education.id}
-                  identifier={`education-${education.id}`}
-                >
-                  <div className="p-3 relative text-white">
-                    <Image
-                      src="/blur-23.svg"
-                      alt="Hero"
-                      width={1080}
-                      height={200}
-                      className="absolute bottom-0 opacity-80"
-                    />
-                    <div className="flex justify-center">
-                      <p className="text-xs sm:text-sm text-[#16f2b3]">
-                        {education.duration}
+        <ol className="flex flex-col gap-5">
+          {educations.map((education) => (
+            <li key={education.id}>
+              <GlowCard identifier={`education-${education.id}`}>
+                <div className="relative p-4 text-white sm:p-5">
+                  <div className="flex justify-center sm:justify-start">
+                    <p className="font-mono text-mono-xs text-primary">
+                      {education.duration}
+                    </p>
+                  </div>
+                  <div className="mt-4 flex items-start gap-4 sm:gap-5">
+                    <div
+                      className="flex-shrink-0 text-primary transition-hover hover:scale-110"
+                      aria-hidden="true"
+                    >
+                      <BsPersonWorkspace size={32} />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="type-label text-neutral-100">
+                        {education.title}
+                      </p>
+                      <p className="mt-1 text-body-sm text-muted">
+                        {education.institution}
                       </p>
                     </div>
-                    <div className="flex items-center gap-x-8 px-3 py-5">
-                      <div className="text-violet-500  transition-all duration-300 hover:scale-125">
-                        <BsPersonWorkspace size={36} />
-                      </div>
-                      <div>
-                        <p className="text-base sm:text-xl mb-2 font-medium uppercase">
-                          {education.title}
-                        </p>
-                        <p className="text-sm sm:text-base">
-                          {education.institution}
-                        </p>
-                      </div>
-                    </div>
                   </div>
-                </GlowCard>
-              ))}
-            </div>
-          </div>
-        </div>
+                </div>
+              </GlowCard>
+            </li>
+          ))}
+        </ol>
       </div>
-    </div>
+    </Section>
   );
 }
 

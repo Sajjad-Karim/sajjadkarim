@@ -1,0 +1,2260 @@
+# Master Portfolio Specification
+
+**Project:** Sajjad Karim — Personal Brand Experience  
+**Document Version:** 1.0  
+**Status:** Blueprint — No Implementation  
+**Author Role:** Principal Staff Engineer / Creative Director  
+**Companion Document:** `PORTFOLIO_ANALYSIS.mdx`  
+**Last Updated:** June 14, 2026
+
+---
+
+## Document Purpose
+
+This specification is the **single authoritative blueprint** for transforming the existing developer portfolio into a **world-class personal brand experience**. A senior engineering team should be able to execute this document without making unresolved design decisions.
+
+**This document defines WHAT to build and WHY. It does not contain implementation code.**
+
+---
+
+## Table of Contents
+
+1. [Executive Vision](#executive-vision)
+2. [Design Philosophy](#design-philosophy)
+3. [Brand Identity](#brand-identity)
+4. [Design Tokens](#design-tokens)
+5. [Technology Stack](#technology-stack)
+6. [File Structure](#file-structure)
+7. [Motion System](#motion-system)
+8. [Section Specifications](#section-specifications)
+9. [Component Library](#component-library)
+10. [Project Showcase](#project-showcase)
+11. [Responsiveness](#responsiveness)
+12. [Performance](#performance)
+13. [SEO](#seo)
+14. [Accessibility](#accessibility)
+15. [Implementation Plan](#implementation-plan)
+16. [Appendices](#appendices)
+
+---
+
+## Executive Vision
+
+### The Product
+
+This is not a portfolio website. It is a **personal brand product** — a cinematic, interactive experience that positions Sajjad Karim as a **Product Engineer** who ships premium digital experiences at the intersection of frontend craft, full-stack architecture, and product thinking.
+
+### The Reaction We Optimize For
+
+> *"This developer operates at an elite level."*
+
+Recruiters, clients, and senior engineers should feel this within **3 seconds** of landing — before reading a single paragraph.
+
+### What We Are Replacing
+
+The current site is a customized open-source template with:
+- Code-editor gimmick as dominant motif
+- Broken mobile navigation
+- Template footer attribution
+- No motion system, no design tokens, no case studies
+- Misconfigured contact pipeline
+
+### What We Are Building
+
+A **timeless, premium, cinematic** experience with:
+- Typography-led hero with surgical motion
+- Visual case-study project showcase
+- Unified career timeline
+- Glass-surface navigation with scroll intelligence
+- Server-first architecture with client islands for motion only
+- Lighthouse 100 targets across all categories
+
+### Anti-Patterns (Explicitly Forbidden)
+
+| Forbidden | Reason |
+|-----------|--------|
+| Generic Tailwind landing page aesthetic | Signals template |
+| Infinite skills marquee | 2020 portfolio cliché |
+| macOS terminal window as hero centerpiece | Overused; demote to micro-signature |
+| Pink/violet gradient buttons on every CTA | Template tell |
+| Inter as sole font | Default internet font since 2020 |
+| Lottie animations in every section | Visual noise |
+| Copying Linear/Vercel layouts pixel-for-pixel | Plagiarism, not inspiration |
+| WebGL hero + particles + cursor trail + parallax everywhere | Gimmick overload |
+| Light mode as afterthought | If included, must be fully tokenized |
+
+### Unique Identity Anchor
+
+**Codename: Aperture**
+
+The design system is internally named **Aperture** — representing *focus*, *depth*, and *intentional framing*. Every section "frames" Sajjad's work like a camera aperture isolates subject from background. The experience feels **cinematic** but **restrained**: one hero moment, one scroll signature, one hover language — repeated with discipline.
+
+---
+
+## Design Philosophy
+
+Every decision must answer: **"Does this increase perceived craft, or does it add noise?"**
+
+### Principles
+
+| Principle | Definition | Application |
+|-----------|------------|-------------|
+| **Minimal** | Remove until nothing meaningful can be removed | Max 7 homepage sections; no decorative Lottie |
+| **Luxury** | Generous whitespace, precise typography, restrained color | 80px+ section gaps on desktop; single accent color |
+| **Modern** | 2026 engineering standards: RSC, Motion, tokens | Server Components default; client only for interactivity |
+| **Future-proof** | TypeScript, token-driven, versioned design system | No hardcoded hex in components |
+| **Elegant** | Transitions feel inevitable, not flashy | 400ms ease-out; no bounce easing on UI |
+| **High-end** | Details invisible until noticed | 1px hairline borders, film grain at 2% opacity |
+| **Creative** | One signature moment users remember | Hero typographic reveal + project hover depth |
+| **Interactive** | Response to input within 16ms perception | Hover states, magnetic CTAs, scroll reveals |
+| **Fast** | Performance is a feature | LCP < 1.2s; no animation on critical path |
+| **Accessible** | WCAG 2.1 AA minimum; AAA where feasible | Reduced motion, focus rings, semantic HTML |
+| **Professional** | Conversion-optimized for hiring and clients | Clear CTAs, case studies, availability status |
+
+### Decision Framework
+
+When evaluating any design or engineering choice, score 1–5 on:
+
+1. **Craft** — Does it demonstrate senior-level attention?
+2. **Clarity** — Can a recruiter understand value in 6 seconds?
+3. **Performance** — Does it cost more than 5KB or 1ms?
+4. **Originality** — Would this appear on 100 other portfolios?
+5. **Accessibility** — Does it exclude anyone?
+
+**Minimum acceptable total: 18/25.** Reject anything below.
+
+---
+
+## Brand Identity
+
+### Personal Brand Positioning
+
+| Dimension | Current | Target |
+|-----------|---------|--------|
+| Title | MERN Stack Developer | **Product Engineer** |
+| Focus | Stack listing | **Outcomes shipped** |
+| Tone | Resume paragraph | **Confident, precise, warm** |
+| Audience | Generic | **Senior engineers, hiring managers, startup founders** |
+| Geography | Mentioned in contact | **Global remote-ready from Pakistan** |
+
+**Brand statement (internal):**
+
+> Sajjad Karim builds production-grade web products with frontend excellence and full-stack depth. From AI platforms to portfolio SaaS, he ships systems that scale — not demos that impress.
+
+**Public tagline (hero eyebrow):**
+
+> Product Engineer · Next.js · MERN
+
+**Public headline (hero H1):**
+
+> I build digital products that feel inevitable.
+
+**Public subheadline:**
+
+> Full-stack engineer with a frontend obsession. Shipping scalable interfaces and robust architectures for clients worldwide from Rawalpindi.
+
+### Visual Personality
+
+| Trait | Expression |
+|-------|-------------|
+| **Precise** | Grid-aligned layouts, consistent 4px spacing |
+| **Cinematic** | Deep obsidian backgrounds, subtle vignette, film grain |
+| **Confident** | Large display type, minimal copy |
+| **Technical** | Monospace accents for metadata (dates, stack tags) |
+| **Human** | Warm portrait, conversational microcopy in contact |
+| **Premium** | Glass surfaces, hairline borders, no drop shadows except elevation-2+ |
+
+### Tone & Voice
+
+| Context | Voice | Example |
+|---------|-------|---------|
+| Hero | Declarative, short | "I build digital products that feel inevitable." |
+| About | First person, impact-focused | "At Webloop, I lead frontend for production client work." |
+| Projects | Case study, past tense | "Mother of Peace connects 10K+ users to AI-guided spiritual learning." |
+| Contact | Inviting, low friction | "Have a product to build? Let's talk." |
+| Error states | Calm, helpful | "Something went wrong. Try again or email me directly." |
+| Metadata | Factual | "2021 — Present · Frontend Developer" |
+
+**Avoid:** "Passionate," "hard worker," "quick learner," `hireable()` function tropes, excessive exclamation marks.
+
+### Emotional Impact
+
+| Stage | Emotion | Mechanism |
+|-------|---------|-----------|
+| 0–3s | **Intrigue** | Typographic hero reveal, dark cinematic bg |
+| 3–10s | **Respect** | Metrics strip, featured project thumbnails |
+| 10–30s | **Confidence** | Case study depth, real URLs, role clarity |
+| 30s+ | **Trust** | Contact ease, professional footer, blog/writing |
+| Exit | **Recall** | Distinct mint accent + display font pairing |
+
+### Signature Design Language
+
+**The Aperture Language — 5 Signatures:**
+
+1. **Obsidian Canvas** — Near-black backgrounds with subtle blue undertone (not purple template)
+2. **Mint Signal** — Single accent `#3DFFB8` (evolved from current `#16f2b3`, slightly desaturated for luxury)
+3. **Hairline Frame** — 1px borders at `rgba(255,255,255,0.08)` on all elevated surfaces
+4. **Display + Mono Pairing** — Serif/sans display for headlines; monospace for metadata
+5. **Depth on Intent** — Scale, blur, and shadow activate only on hover/focus — never at rest
+
+**Micro-signature (optional, max 1 per page):**
+
+A single-line monospace prompt in footer or hero corner:
+
+```
+sajjad@portfolio ~ ready
+```
+
+No blinking cursor animation. Static or subtle opacity pulse only.
+
+### Brand Consistency Rules
+
+1. Accent color appears **maximum 3 times** per viewport (logo dot, one CTA, one data highlight)
+2. Gradients limited to **hero background mesh** and **one CTA variant** — nowhere else
+3. All caps only for **section eyebrows** (11px, tracking 0.2em) — never headlines
+4. Photography: desaturated 10%, consistent border-radius `radius-image`
+5. Third-party logos (skills, companies): monochrome at 60% opacity, color on hover only
+
+### Unique Identity System
+
+**Logo mark:** Wordmark "Sajjad Karim" in display font. Preceded by a 6px mint square (brand dot) — not a `{ }` or `< />` icon.
+
+**Favicon:** Mint square on obsidian background.
+
+**OG Image:** Display headline + brand dot + subtle grid. No photo (photo ages; typography endures).
+
+**Social handles (consistent):**
+- GitHub: Sajjad-Karim
+- LinkedIn: sajjad-karim
+- Email: sajukarim76@gmail.com
+
+---
+
+## Design Tokens
+
+All tokens live in `styles/tokens.css` (Tailwind v4 `@theme`) and `config/design-tokens.ts` (TypeScript constants for Motion/JS).
+
+### Colors
+
+#### Primary Palette
+
+| Token | Hex | Usage |
+|-------|-----|-------|
+| `--color-primary` | `#3DFFB8` | CTAs, links, brand dot, focus rings, active nav |
+| `--color-primary-hover` | `#2EE6A6` | Button hover, link hover |
+| `--color-primary-muted` | `#3DFFB8` at 15% opacity | Badge backgrounds, highlight washes |
+| `--color-primary-foreground` | `#0A0C10` | Text on primary buttons |
+
+#### Secondary Palette
+
+| Token | Hex | Usage |
+|-------|-----|-------|
+| `--color-secondary` | `#8B5CF6` | **Restricted:** hero mesh gradient only, never buttons |
+| `--color-secondary-muted` | `#8B5CF6` at 10% | Ambient glow in hero background |
+
+#### Accent (Semantic)
+
+| Token | Hex | Usage |
+|-------|-----|-------|
+| `--color-accent-blue` | `#60A5FA` | External links, GitHub icon hover |
+| `--color-accent-amber` | `#FBBF24` | Featured badge, "New" indicator |
+
+#### Neutral Scale (Dark Mode — Default)
+
+| Token | Hex | Usage |
+|-------|-----|-------|
+| `--color-neutral-950` | `#030406` | Deepest bg, footer |
+| `--color-neutral-900` | `#0A0C10` | Page background |
+| `--color-neutral-850` | `#0F1218` | Section alternate bg |
+| `--color-neutral-800` | `#161A22` | Card surface |
+| `--color-neutral-700` | `#1E2430` | Elevated card, input bg |
+| `--color-neutral-600` | `#2A3140` | Borders strong |
+| `--color-neutral-500` | `#4A5568` | Placeholder text |
+| `--color-neutral-400` | `#8892A4` | Muted body text |
+| `--color-neutral-300` | `#B8C0CC` | Secondary body |
+| `--color-neutral-200` | `#E2E8F0` | Primary body text (dark mode) |
+| `--color-neutral-100` | `#F7F8FA` | Headings (dark mode) |
+| `--color-neutral-0` | `#FFFFFF` | Pure white — display headlines only |
+
+#### Background Tokens
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--bg-canvas` | `neutral-900` | Body background |
+| `--bg-subtle` | `neutral-850` | Alternating sections |
+| `--bg-elevated` | `neutral-800` | Cards |
+| `--bg-overlay` | `rgba(3,4,6,0.85)` | Mobile nav backdrop |
+
+#### Surface Tokens
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--surface-default` | `neutral-800` | Cards, form containers |
+| `--surface-hover` | `neutral-700` | Card hover state |
+| `--surface-active` | `neutral-600` | Pressed state |
+
+#### Border Tokens
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--border-default` | `rgba(255,255,255,0.08)` | All cards, inputs, dividers |
+| `--border-strong` | `rgba(255,255,255,0.14)` | Focus adjacent, active card |
+| `--border-accent` | `rgba(61,255,184,0.4)` | Active nav item, focused input |
+| `--border-error` | `rgba(248,113,113,0.6)` | Form validation |
+
+#### Semantic Colors
+
+| Token | Hex | Usage |
+|-------|-----|-------|
+| `--color-success` | `#34D399` | Form success, availability dot |
+| `--color-warning` | `#FBBF24` | Deprecation, caution |
+| `--color-error` | `#F87171` | Form errors, destructive |
+| `--color-info` | `#60A5FA` | Informational toasts |
+
+#### Muted
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--text-muted` | `neutral-400` | Captions, metadata |
+| `--text-subtle` | `neutral-500` | Timestamps, legal |
+
+#### Glass
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--glass-bg` | `rgba(15,18,24,0.72)` | Navbar, mobile drawer |
+| `--glass-border` | `rgba(255,255,255,0.06)` | Glass edge |
+| `--glass-blur` | `20px` | backdrop-filter blur |
+
+#### Gradient Palette
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--gradient-hero` | `radial-gradient(ellipse 80% 60% at 50% -20%, rgba(139,92,246,0.15), transparent), radial-gradient(ellipse 60% 40% at 80% 60%, rgba(61,255,184,0.08), transparent)` | Hero background only |
+| `--gradient-cta` | `linear-gradient(135deg, #3DFFB8 0%, #2EE6A6 100%)` | Primary button fill |
+| `--gradient-divider` | `linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)` | Section dividers |
+| `--gradient-mesh-noise` | SVG noise overlay at 2% opacity | Global canvas texture |
+
+**Gradient usage rule:** Maximum 2 gradient types visible in any viewport. Never stack gradients on gradients.
+
+#### Light Mode (Optional — Phase 4)
+
+Light mode is **optional** and deprioritized. If implemented:
+
+| Token | Hex |
+|-------|-----|
+| `--bg-canvas-light` | `#FAFBFC` |
+| `--bg-elevated-light` | `#FFFFFF` |
+| `--text-primary-light` | `#0A0C10` |
+| `--border-default-light` | `rgba(0,0,0,0.08)` |
+| `--color-primary-light` | `#0D9F6E` (darkened for contrast) |
+
+Toggle via `next-themes` with system default → dark.
+
+---
+
+### Typography
+
+#### Font Pairing (Recommended)
+
+| Role | Font | Source | Fallback |
+|------|------|--------|----------|
+| **Display** | **Instrument Serif** | Google Fonts / next/font | Georgia, serif |
+| **Body** | **Geist Sans** | Vercel CDN / next/font | system-ui, sans-serif |
+| **Mono** | **Geist Mono** | Vercel CDN / next/font | ui-monospace, monospace |
+
+**Why this pairing:**
+- Instrument Serif: editorial luxury, distinct from Inter/Geist-only portfolios
+- Geist Sans: technical credibility, Vercel-adjacent without copying their layout
+- Geist Mono: metadata, tags, terminal micro-signature
+
+**Alternative if Instrument Serif unavailable:** **Fraunces** (display) + Geist Sans (body)
+
+#### Heading Scale
+
+| Token | Size (desktop) | Size (mobile) | Weight | Line Height | Letter Spacing | Font |
+|-------|---------------|---------------|--------|-------------|----------------|------|
+| `--text-display-xl` | 72px / 4.5rem | 40px / 2.5rem | 400 | 1.05 | -0.03em | Display |
+| `--text-display-lg` | 56px / 3.5rem | 36px / 2.25rem | 400 | 1.08 | -0.025em | Display |
+| `--text-display-md` | 40px / 2.5rem | 28px / 1.75rem | 400 | 1.1 | -0.02em | Display |
+| `--text-heading-lg` | 32px / 2rem | 24px / 1.5rem | 500 | 1.2 | -0.02em | Body |
+| `--text-heading-md` | 24px / 1.5rem | 20px / 1.25rem | 500 | 1.25 | -0.015em | Body |
+| `--text-heading-sm` | 20px / 1.25rem | 18px / 1.125rem | 500 | 1.3 | -0.01em | Body |
+| `--text-eyebrow` | 11px / 0.6875rem | 11px | 500 | 1.4 | 0.2em | Body (uppercase) |
+
+#### Body Scale
+
+| Token | Size | Weight | Line Height | Usage |
+|-------|------|--------|-------------|-------|
+| `--text-body-lg` | 18px / 1.125rem | 400 | 1.7 | About, case study intro |
+| `--text-body-md` | 16px / 1rem | 400 | 1.65 | Default body |
+| `--text-body-sm` | 14px / 0.875rem | 400 | 1.6 | Card descriptions |
+| `--text-caption` | 12px / 0.75rem | 400 | 1.5 | Timestamps, legal |
+| `--text-mono-sm` | 13px / 0.8125rem | 400 | 1.5 | Stack tags, dates |
+| `--text-mono-xs` | 11px / 0.6875rem | 400 | 1.4 | Metadata, eyebrows |
+
+#### Typography Rules
+
+1. Display font: **maximum 2 lines per viewport** (hero headline + one section title)
+2. Body paragraphs: **max-width 65ch** (`prose-width: 640px`)
+3. No font weight above 500 except stat numbers (600)
+4. `text-wrap: balance` on all display headings via `react-wrap-balancer`
+5. Tabular nums for statistics (`font-variant-numeric: tabular-nums`)
+
+---
+
+### Border Radius
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--radius-none` | 0 | — |
+| `--radius-sm` | 4px | Tags, badges |
+| `--radius-md` | 8px | Inputs, small buttons |
+| `--radius-lg` | 12px | Cards, dialogs |
+| `--radius-xl` | 16px | Project cards, feature blocks |
+| `--radius-2xl` | 24px | Hero image, large media |
+| `--radius-full` | 9999px | Pills, avatar, icon buttons |
+
+| Component | Token |
+|-----------|-------|
+| Buttons (primary) | `radius-full` |
+| Buttons (secondary) | `radius-md` |
+| Cards | `radius-xl` |
+| Dialogs | `radius-xl` |
+| Inputs | `radius-md` |
+| Images | `radius-2xl` |
+| Containers | `radius-none` (sections are full-bleed; cards have radius) |
+
+---
+
+### Shadows
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--shadow-none` | none | Default card at rest |
+| `--shadow-soft` | `0 2px 8px rgba(0,0,0,0.24)` | Subtle lift |
+| `--shadow-medium` | `0 8px 24px rgba(0,0,0,0.32)` | Dropdown, popover |
+| `--shadow-strong` | `0 16px 48px rgba(0,0,0,0.48)` | Modal, project hover |
+| `--shadow-glow-primary` | `0 0 40px rgba(61,255,184,0.15)` | Primary CTA hover only |
+| `--shadow-glow-ambient` | `0 0 80px rgba(139,92,246,0.08)` | Hero background only |
+| `--shadow-glass` | `inset 0 1px 0 rgba(255,255,255,0.06)` | Glass navbar inner highlight |
+
+#### Elevation System
+
+| Level | Shadow | Transform | Usage |
+|-------|--------|-----------|-------|
+| 0 | none | none | Flat text, dividers |
+| 1 | soft | none | Cards at rest |
+| 2 | medium | translateY(-2px) | Card hover |
+| 3 | strong | translateY(-4px) | Project card hover, modals |
+| 4 | strong + glow | translateY(-6px) | Featured project only |
+
+**Rule:** Shadows never combine with gradients on the same element.
+
+---
+
+### Spacing System
+
+Base unit: **4px**
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--space-0` | 0 | — |
+| `--space-1` | 4px | Tight inline gaps |
+| `--space-2` | 8px | Icon gaps, tag padding |
+| `--space-3` | 12px | Button padding y |
+| `--space-4` | 16px | Card padding mobile |
+| `--space-5` | 20px | — |
+| `--space-6` | 24px | Card padding desktop |
+| `--space-8` | 32px | Section inner gaps |
+| `--space-10` | 40px | — |
+| `--space-12` | 48px | Section header to content |
+| `--space-16` | 64px | Section padding mobile |
+| `--space-20` | 80px | Section padding tablet |
+| `--space-24` | 96px | Section padding desktop |
+| `--space-32` | 128px | Hero vertical padding |
+| `--space-40` | 160px | Large section breaks |
+
+#### Container Widths
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--container-sm` | 640px | Prose, contact form |
+| `--container-md` | 768px | Case study text |
+| `--container-lg` | 1024px | Standard content |
+| `--container-xl` | 1200px | **Default max-width** |
+| `--container-2xl` | 1400px | Project grid, wide galleries |
+| `--container-full` | 100% | Full-bleed hero bg |
+
+#### Section Spacing
+
+| Breakpoint | Section padding-y |
+|------------|-------------------|
+| Mobile | `--space-16` (64px) |
+| Tablet | `--space-20` (80px) |
+| Desktop | `--space-24` (96px) |
+| Hero | `--space-32` (128px) top, `--space-24` bottom |
+
+#### Grid Spacing
+
+| Context | Gap |
+|---------|-----|
+| Project grid | 24px mobile, 32px desktop |
+| Bento skills | 16px |
+| Stats row | 32px |
+| Form fields | 20px |
+
+---
+
+### Animation Tokens
+
+#### Duration
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--duration-instant` | 0ms | Reduced motion fallback |
+| `--duration-fast` | 150ms | Button press, toggle |
+| `--duration-normal` | 250ms | Hover color, opacity |
+| `--duration-slow` | 400ms | Card lift, scroll reveal |
+| `--duration-slower` | 600ms | Page transition, hero stagger |
+| `--duration-cinematic` | 900ms | Hero headline reveal only |
+
+#### Delay Scale
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--delay-0` | 0ms | First element |
+| `--delay-1` | 80ms | Stagger item 1 |
+| `--delay-2` | 160ms | Stagger item 2 |
+| `--delay-3` | 240ms | Stagger item 3 |
+| `--delay-4` | 320ms | Stagger item 4 |
+| `--delay-5` | 400ms | Stagger item 5 |
+
+#### Easing
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--ease-out` | `cubic-bezier(0.16, 1, 0.3, 1)` | Default exit/hover |
+| `--ease-in-out` | `cubic-bezier(0.65, 0, 0.35, 1)` | Page transitions |
+| `--ease-spring` | `{ stiffness: 400, damping: 30 }` | Motion spring (modals) |
+| `--ease-linear` | `linear` | Progress bars only |
+
+#### Interaction Timing
+
+| Interaction | Duration | Ease |
+|-------------|----------|------|
+| Button hover | 250ms | ease-out |
+| Button press | 150ms | ease-out |
+| Card hover lift | 400ms | ease-out |
+| Nav link underline | 250ms | ease-out |
+| Scroll reveal | 600ms | ease-out |
+| Hero stagger | 900ms total | ease-out per item |
+| Toast enter/exit | 300ms | spring |
+| Mobile drawer | 400ms | spring |
+| Magnetic button | 150ms | spring (stiff) |
+
+#### Reduced Motion
+
+When `prefers-reduced-motion: reduce`:
+- All durations → `--duration-instant`
+- Scroll reveals → opacity only, no translateY
+- Hero stagger → simultaneous fade-in
+- Lenis smooth scroll → disabled
+- Parallax → disabled
+- Magnetic effects → disabled
+
+---
+
+## Technology Stack
+
+### Core Framework
+
+| Package | Version | Purpose | Why |
+|---------|---------|---------|-----|
+| **Next.js** | 15.x | App Router, RSC, SSR, metadata API | Industry standard for premium React sites; PPR for instant static shell |
+| **React** | 19.x | UI rendering | Concurrent features, improved Suspense, pairs with Next 15 |
+| **TypeScript** | 5.x | Type safety | Non-negotiable for senior portfolio; documents data contracts |
+
+### Styling
+
+| Package | Version | Purpose | Why |
+|---------|---------|---------|-----|
+| **Tailwind CSS** | 4.x | Utility-first styling | Token integration via `@theme`; zero-runtime with v4 |
+| **clsx** | latest | Conditional classes | Clean class composition |
+| **tailwind-merge** | latest | Class conflict resolution | Prevents `p-4 p-6` bugs in variants |
+| **class-variance-authority** | latest | Component variants | Systematic Button/Card/Badge APIs |
+
+### Motion & Scroll
+
+| Package | Version | Purpose | Why |
+|---------|---------|---------|-----|
+| **motion** | latest | UI animations, scroll reveals, layout | Successor to Framer Motion; React-native API, production-proven |
+| **lenis** | latest | Smooth scroll | Premium scroll feel; used by Awwwards winners; pairs with scroll-triggered animations |
+
+**GSAP:** Install **only if** Phase 4 horizontal scroll gallery is approved. Default: Motion handles all animation. GSAP adds ~25KB gzip — justify only for ScrollTrigger pin sections.
+
+### UI Primitives
+
+| Package | Version | Purpose | Why |
+|---------|---------|---------|-----|
+| **@radix-ui/react-*** | latest | Accessible primitives | Dialog, NavigationMenu, Tooltip, Accordion — unstyled, accessible |
+| **shadcn/ui** | latest | Component scaffolding | Copy-paste ownership; not a dependency lock-in; Radix + Tailwind |
+| **vaul** | latest | Mobile drawer | Bottom/side drawer for mobile nav — better UX than full-screen overlay |
+| **sonner** | latest | Toast notifications | Lightweight, beautiful, promise API |
+| **react-wrap-balancer** | latest | Headline line breaks | Prevents orphaned words in display type |
+
+### Icons & Theme
+
+| Package | Version | Purpose | Why |
+|---------|---------|---------|-----|
+| **lucide-react** | latest | Icons | Consistent 24px stroke, tree-shakeable, no mixed packs |
+| **next-themes** | latest | Theme switching | System/dark/light with no flash; optional light mode |
+
+### Forms & Validation
+
+| Package | Version | Purpose | Why |
+|---------|---------|---------|-----|
+| **react-hook-form** | latest | Form state | Performant, minimal re-renders |
+| **zod** | latest | Schema validation | Shared client/server validation |
+| **@hookform/resolvers** | latest | Zod + RHF bridge | Type-safe form errors |
+
+### Email & Security
+
+| Package | Version | Purpose | Why |
+|---------|---------|---------|-----|
+| **resend** | latest | Transactional email | Modern API, deliverability, React Email templates |
+| **@react-email/components** | latest | Email templates | Branded contact notification emails |
+| **@marsidev/react-turnstile** | latest | CAPTCHA | Cloudflare Turnstile — better UX than reCAPTCHA |
+
+### Analytics & SEO
+
+| Package | Version | Purpose | Why |
+|---------|---------|---------|-----|
+| **@vercel/analytics** | latest | Web analytics | Zero-config, privacy-friendly |
+| **@vercel/speed-insights** | latest | Real user metrics | Track Core Web Vitals in production |
+| **next-sitemap** | latest | Sitemap generation | Automated SEO |
+
+### Development
+
+| Package | Purpose |
+|---------|---------|
+| **eslint** + **eslint-config-next** + **eslint-plugin-jsx-a11y** | Linting + accessibility |
+| **prettier** + **prettier-plugin-tailwindcss** | Formatting |
+| **vitest** + **@testing-library/react** | Unit/component tests |
+| **playwright** | E2E tests |
+| **@next/bundle-analyzer** | Bundle monitoring |
+
+### Explicitly Removed (From Current Stack)
+
+| Package | Reason |
+|---------|--------|
+| `@emailjs/browser` | Client-side secrets; replace with Resend server action |
+| `react-fast-marquee` | Cliché; replace with bento grid |
+| `react-toastify` | Replace with Sonner |
+| `react-icons` | Replace with Lucide |
+| `lottie-react` | Remove from homepage; motion replaces decorative animation |
+| `react-google-recaptcha` | Replace with Turnstile |
+| `axios` | Native fetch in server actions |
+| `nodemailer` | Replace with Resend |
+| `sass` | Tailwind v4 + CSS handles all styles |
+
+---
+
+## File Structure
+
+```
+sajjadkarim/
+├── app/
+│   ├── (site)/                          # Marketing route group
+│   │   ├── layout.tsx                   # Site layout: nav + footer + lenis provider
+│   │   ├── page.tsx                     # Homepage (Server Component)
+│   │   ├── work/
+│   │   │   ├── page.tsx                 # All projects index
+│   │   │   └── [slug]/
+│   │   │       └── page.tsx             # Case study detail
+│   │   ├── blog/
+│   │   │   ├── page.tsx                 # Blog listing (dev.to)
+│   │   │   └── [slug]/
+│   │   │       └── page.tsx             # Article detail
+│   │   ├── uses/
+│   │   │   └── page.tsx                 # Tools/setup page (SEO)
+│   │   └── not-found.tsx                # Branded 404
+│   │
+│   ├── api/
+│   │   └── contact/
+│   │       └── route.ts                 # POST contact (Resend + rate limit)
+│   │
+│   ├── layout.tsx                       # Root: fonts, metadata, analytics
+│   ├── globals.css                      # Tailwind v4 + tokens
+│   ├── robots.ts                        # Dynamic robots.txt
+│   ├── sitemap.ts                       # Dynamic sitemap
+│   └── opengraph-image.tsx              # Generated OG image
+│
+├── components/
+│   ├── ui/                              # shadcn primitives (Button, Input, etc.)
+│   ├── layout/
+│   │   ├── site-header.tsx              # Navbar + mobile drawer
+│   │   ├── site-footer.tsx
+│   │   ├── container.tsx                # Max-width wrapper
+│   │   └── section.tsx                  # Section wrapper with id + spacing
+│   ├── sections/
+│   │   ├── hero-section.tsx
+│   │   ├── about-section.tsx
+│   │   ├── experience-section.tsx
+│   │   ├── skills-section.tsx
+│   │   ├── projects-section.tsx
+│   │   ├── services-section.tsx
+│   │   ├── testimonials-section.tsx
+│   │   └── contact-section.tsx
+│   ├── shared/
+│   │   ├── project-card.tsx
+│   │   ├── case-study-header.tsx
+│   │   ├── timeline-item.tsx
+│   │   ├── skill-badge.tsx
+│   │   ├── stat-block.tsx
+│   │   ├── social-links.tsx
+│   │   ├── section-header.tsx
+│   │   └── availability-badge.tsx
+│   └── animations/
+│       ├── motion-provider.tsx          # LazyMotion wrapper
+│       ├── scroll-reveal.tsx            # whileInView wrapper
+│       ├── page-transition.tsx          # AnimatePresence layout
+│       ├── magnetic-button.tsx          # Cursor-attracted CTA
+│       ├── smooth-scroll.tsx            # Lenis provider (client)
+│       └── stagger-children.tsx         # Hero stagger utility
+│
+├── hooks/
+│   ├── use-scroll-spy.ts                # Active nav section
+│   ├── use-media-query.ts               # Responsive hooks
+│   ├── use-reduced-motion.ts            # A11y motion preference
+│   └── use-mouse-position.ts           # Magnetic effects (desktop only)
+│
+├── lib/
+│   ├── utils.ts                         # cn() helper
+│   ├── validations.ts                   # Zod schemas
+│   ├── resend.ts                        # Email client
+│   ├── rate-limit.ts                    # Contact form rate limiting
+│   └── devto.ts                         # dev.to API fetcher with cache
+│
+├── config/
+│   ├── site.ts                          # Site metadata constants
+│   ├── navigation.ts                    # Nav links array
+│   └── design-tokens.ts                 # TS token exports for Motion
+│
+├── constants/
+│   └── index.ts                         # Shared constants
+│
+├── content/
+│   ├── projects/                        # Project MDX or typed JSON
+│   ├── experience.ts
+│   ├── skills.ts
+│   ├── services.ts
+│   ├── testimonials.ts
+│   └── personal.ts
+│
+├── types/
+│   ├── project.ts
+│   ├── experience.ts
+│   ├── blog.ts
+│   └── index.ts
+│
+├── styles/
+│   └── tokens.css                       # CSS custom properties
+│
+└── public/
+    ├── fonts/                           # Self-hosted if needed
+    ├── images/
+    │   ├── projects/                    # WebP/AVIF screenshots
+    │   ├── profile.webp
+    │   └── og-default.png
+    ├── icons/
+    │   ├── favicon.ico
+    │   └── apple-touch-icon.png
+    └── noise.svg                        # Film grain texture
+```
+
+### Responsibility Matrix
+
+| Directory | Responsibility | Server/Client |
+|-----------|---------------|---------------|
+| `app/(site)/` | Routes, data fetching, metadata | Server default |
+| `components/ui/` | Stateless primitives | Mixed (Radix = client) |
+| `components/layout/` | Global chrome | Header=client, Footer=server |
+| `components/sections/` | Page sections | Server wrappers + client animation islands |
+| `components/shared/` | Reusable composed components | Mostly server |
+| `components/animations/` | All client-side motion | Client only |
+| `hooks/` | Browser hooks | Client only |
+| `lib/` | Server-safe utilities | Universal |
+| `content/` | Static data source of truth | Imported by server |
+| `types/` | TypeScript interfaces | Compile-time only |
+
+---
+
+## Motion System
+
+### Philosophy
+
+Motion communicates **hierarchy and causality** — not decoration. Every animation answers: "What changed, and why should the user care?"
+
+**Budget:** Maximum 60fps on mid-range Android. Total client JS for motion < 45KB gzip.
+
+### Page Transitions
+
+| Transition | Spec |
+|------------|------|
+| Route change | Fade out current (150ms) → fade in next (250ms) via `AnimatePresence mode="wait"` |
+| Shared element | Project card image → case study hero via `layoutId` (optional Phase 4) |
+| Scroll position | Reset to top on route change via Lenis |
+
+### Hero Timeline (0–900ms)
+
+| Time | Element | Animation |
+|------|---------|-----------|
+| 0ms | Background mesh | Opacity 0→1, 600ms |
+| 100ms | Eyebrow text | Opacity 0→1, translateY 12→0, 400ms |
+| 200ms | Headline word 1 | Stagger per word, 80ms delay each |
+| 400ms | Subheadline | Opacity 0→1, translateY 8→0, 400ms |
+| 500ms | CTA group | Opacity 0→1, translateY 8→0, 400ms |
+| 600ms | Stats strip | Opacity 0→1, 400ms |
+| 700ms | Scroll indicator | Opacity 0→0.6, subtle translateY loop (2s repeat) |
+
+**Skip if reduced motion:** All elements fade in simultaneously at 200ms.
+
+### Mouse Movement & Cursor
+
+| Feature | Spec | Scope |
+|---------|------|-------|
+| Custom cursor | **No** — system cursor preserved for accessibility | — |
+| Magnetic button | Primary CTA follows cursor within 8px radius | Desktop only, `@media (hover: hover)` |
+| Spotlight | **No** — replaced by card hover glow | — |
+| Parallax hero mesh | Background gradient shifts ±2% based on mouse position | Desktop only, subtle |
+
+### Card Hover
+
+```
+Rest → Hover (400ms ease-out):
+- translateY: 0 → -4px
+- border-color: border-default → border-strong
+- shadow: elevation-1 → elevation-3
+- Optional: inner image scale 1 → 1.03 (overflow hidden)
+```
+
+Project cards additionally reveal:
+- Overlay gradient from bottom (opacity 0→0.6)
+- "View case study →" text slides up 8px
+
+### Button Hover
+
+| Variant | Hover |
+|---------|-------|
+| Primary | Background lightens 5%; shadow-glow-primary; scale 1.02 |
+| Secondary | Border → border-accent; background surface-hover |
+| Ghost | Text → primary; underline slides in from left |
+| Icon | Background surface-hover; icon color → primary |
+
+Press: scale 0.98, 150ms
+
+### Image Hover
+
+- Project thumbnails: scale 1.03 inside overflow:hidden container, 600ms ease-out
+- Profile photo: no scale — static with subtle border glow on section hover only
+
+### Scroll Reveal
+
+Default section reveal via `ScrollReveal` wrapper:
+
+```typescript
+// Spec (not implementation):
+initial: { opacity: 0, y: 24 }
+whileInView: { opacity: 1, y: 0 }
+viewport: { once: true, margin: "-10%" }
+transition: { duration: 0.6, ease: ease-out }
+```
+
+Stagger children within section: 80ms delay per child.
+
+### Parallax
+
+| Element | Rate | Phase |
+|---------|------|-------|
+| Hero mesh background | 0.3x scroll speed | Phase 3 |
+| Section decorative elements | **None** | — |
+
+Parallax disabled on mobile and reduced-motion.
+
+### Depth & Layering
+
+| Z-index | Layer |
+|---------|-------|
+| 0 | Canvas background, mesh |
+| 10 | Content |
+| 20 | Sticky cards |
+| 50 | Navbar |
+| 60 | Mobile drawer |
+| 70 | Toast |
+| 80 | Modal/dialog |
+| 90 | Skip link (focus) |
+
+### Physics
+
+- Spring physics for: mobile drawer, modal enter, toast
+- Tween physics for: hover, scroll reveal, hero stagger
+- No bounce easing on UI elements (bounce reads as playful, not premium)
+
+### Background Animation
+
+| Effect | Spec |
+|--------|------|
+| Hero mesh | CSS radial gradients, optional slow 20s hue rotate on secondary orb |
+| Film grain | Fixed `noise.svg` overlay, 2% opacity, pointer-events: none |
+| Particles | **Not approved for v1** — revisit only if hero feels empty in user testing |
+| Aurora | **Not approved** — too trendy, dates quickly |
+
+### Glass Morphism
+
+| Element | Spec |
+|---------|------|
+| Navbar (scrolled) | glass-bg + glass-blur + glass-border + shadow-glass |
+| Navbar (top) | Transparent, no blur |
+| Mobile drawer | glass-bg at 95% opacity |
+| Cards | **No glass** — solid surfaces only |
+
+---
+
+## Section Specifications
+
+### Global Section Pattern
+
+Every section uses `<Section id="..." eyebrow="..." title="..." description="...">` wrapper:
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  EYEBROW (11px, uppercase, tracking, primary muted)     │
+│  Section Title (display-md)                             │
+│  Optional description (body-lg, muted, max-w-prose)     │
+│                                                         │
+│  [Section content]                                      │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 1. Navbar (`SiteHeader`)
+
+#### Purpose
+Persistent wayfinding, primary CTA access, brand recognition.
+
+#### Layout
+
+**Desktop (≥1024px):**
+```
+[■ Sajjad Karim]     Work  About  Experience  Blog  Contact     [Resume ↓]
+     brand dot       ← scroll-spy active state →              ghost btn + primary btn
+```
+
+**Mobile (<1024px):**
+```
+[■ Sajjad Karim]                                    [≡ Menu]
+```
+Menu opens Vaul drawer from right with full nav + CTAs.
+
+#### Hierarchy
+1. Brand wordmark (always visible)
+2. Primary CTA: "Let's talk" (contact)
+3. Secondary CTA: "Resume"
+4. Nav links (equal weight)
+
+#### Interactions
+| Action | Response |
+|--------|----------|
+| Scroll > 64px | Navbar gains glass background, shrinks padding 20→12px |
+| Nav click | Lenis smooth scroll to section (homepage) or route navigate |
+| Active section | Mint dot below link + text → primary color |
+| Resume click | Download `/resume.pdf` |
+| Menu open | Drawer slides 400ms spring; body scroll locked |
+
+#### Animations
+- Enter: slide down from -100%, 400ms (page load only)
+- Link underline: scaleX 0→1 from center, 250ms
+
+#### Responsive
+- Hamburger at `< lg` (1024px), not 768px
+- Drawer full-height, links 48px touch target
+
+#### Accessibility
+- `<nav aria-label="Main navigation">`
+- Skip link as first focusable element
+- Trap focus in mobile drawer
+- `aria-current="page"` on active link
+- Escape closes drawer
+
+#### Performance
+- Header is client component (~8KB)
+- Scroll listener: passive, throttled via rAF
+- No re-render on every scroll pixel — binary threshold at 64px
+
+#### Premium Features
+- Scroll-spy with Intersection Observer
+- Command palette (⌘K) in Phase 4: fuzzy jump to sections
+
+---
+
+### 2. Hero Section
+
+#### Purpose
+Establish elite first impression; communicate value proposition; drive CTA conversion.
+
+#### Layout
+
+**Desktop:**
+```
+┌──────────────────────────────────────────────────────────────────┐
+│  [mesh gradient bg + film grain]                                  │
+│                                                                   │
+│  PRODUCT ENGINEER · NEXT.JS · MERN          ← eyebrow             │
+│                                                                   │
+│  I build digital products         ← display-xl, Instrument Serif  │
+│  that feel inevitable.                                            │
+│                                                                   │
+│  Full-stack engineer with a frontend obsession...  ← subhead     │
+│                                                                   │
+│  [Let's talk]  [View work →]           ← magnetic + ghost        │
+│                                                                   │
+│  5+ yrs  ·  20+ projects  ·  Remote  ·  Rawalpindi   ← stats    │
+│                                                                   │
+│                              ↓ scroll                             │
+└──────────────────────────────────────────────────────────────────┘
+```
+
+**Mobile:** Single column, display-lg headline, stats wrap 2×2 grid.
+
+**No code window.** Terminal aesthetic removed from hero. Optional micro-signature in footer only.
+
+#### Hierarchy
+1. Headline (display-xl)
+2. Primary CTA
+3. Subheadline
+4. Stats strip
+5. Eyebrow (reads first visually due to color but hierarchically secondary)
+
+#### Interactions
+- Primary CTA: magnetic hover (desktop), scroll to contact
+- Secondary CTA: scroll to projects section
+- Scroll indicator: subtle bounce animation
+
+#### Animations
+See [Hero Timeline](#hero-timeline-0900ms).
+
+#### Responsive
+- Min-height: 100svh (mobile), 90vh (desktop)
+- Headline scales display-xl → display-lg → display-md
+- CTAs stack vertically on `< sm` with full width
+
+#### Accessibility
+- H1 is the headline (one per page)
+- CTAs are `<a>` or `<button>`, not divs
+- Stats readable by screen readers as list
+
+#### Performance
+- Hero is mostly Server Component
+- Client island: `HeroAnimations` (~6KB) for stagger only
+- No images in hero — text and CSS only for LCP optimization
+- Target LCP element: H1 text
+
+#### Premium Features
+- Availability badge: green dot + "Open to opportunities" next to eyebrow
+- Optional: subtle WebGL mesh (Phase 4 only, lazy loaded)
+
+---
+
+### 3. About Section
+
+#### Purpose
+Humanize the engineer; establish credibility; show portrait.
+
+#### Layout
+
+**Desktop (2-column):**
+```
+┌─────────────────────────────┬─────────────────────────────┐
+│  [Portrait image]           │  ABOUT                      │
+│  radius-2xl, 400×480        │  Title: Crafting products   │
+│  subtle border              │  with precision.            │
+│                             │                             │
+│                             │  Body copy (2 paragraphs) │
+│                             │                             │
+│                             │  [Download resume]          │
+└─────────────────────────────┴─────────────────────────────┘
+```
+
+**Mobile:** Image above text, full width, max-height 360px object-cover.
+
+#### Content (Specified Copy)
+
+**Paragraph 1:**
+> I'm Sajjad Karim, a product engineer based in Rawalpindi, Pakistan, working with teams worldwide. I specialize in React, Next.js, and Node.js — building interfaces that feel fast and architectures that stay maintainable.
+
+**Paragraph 2:**
+> Currently at Webloop, I ship production frontend for client projects. Previously, I taught frontend development at Novaminds and delivered MERN-stack solutions for freelance clients across Upwork and Fiverr.
+
+#### Hierarchy
+1. Section title
+2. Portrait (emotional connection)
+3. Body copy
+4. Resume link
+
+#### Interactions
+- Image: subtle border glow on hover (desktop)
+- Resume button: ghost variant
+
+#### Animations
+- Scroll reveal: image from left, text from right (stagger 200ms)
+- Reduced motion: fade only
+
+#### Responsive
+- 2-column at `lg`; single column below
+- Image aspect-ratio: 5/6
+
+#### Accessibility
+- Image alt: "Portrait of Sajjad Karim, product engineer"
+- Resume link: descriptive text, not "click here"
+
+#### Performance
+- Profile image: WebP/AVIF, `priority={false}`, lazy loaded (below fold on mobile)
+- Sizes: `(max-width: 768px) 100vw, 400px`
+
+#### Premium Features
+- Optional: embedded "Currently reading" or "Latest commit" (Phase 5)
+
+---
+
+### 4. Experience Section
+
+#### Purpose
+Demonstrate career progression and professional depth.
+
+#### Layout
+
+Unified **vertical timeline** (replaces separate Education + Experience sections on homepage):
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  EXPERIENCE                                              │
+│  Where I've built.                                       │
+│                                                          │
+│  ●─── 2021 — Present                                     │
+│  │    Frontend Developer · Webloop                       │
+│  │    Leading frontend for production client projects.   │
+│  │    [React] [Next.js] [TypeScript]                     │
+│  │                                                       │
+│  ●─── 2024 — 2025                                        │
+│  │    Frontend Instructor · Novaminds                    │
+│  │    Taught modern frontend development to cohorts.     │
+│  │                                                       │
+│  ●─── 2022 — Present                                     │
+│  │    MERN Stack Developer · Freelance                   │
+│  │    Delivered full-stack solutions for global clients. │
+│  │                                                       │
+│  ●─── 2019 — 2024                                        │
+│       BSc · SZABIST University Islamabad                 │
+│                                                          │
+└─────────────────────────────────────────────────────────┘
+```
+
+#### Data Requirements (Enhancement)
+
+Each experience entry must include:
+- `id`, `title`, `company`, `startDate`, `endDate`, `description` (1-2 sentences), `tags[]`, `type` (work | education)
+
+#### Hierarchy
+1. Current role (visually emphasized — primary border accent)
+2. Timeline line (vertical, 1px, border-default)
+3. Individual entries
+
+#### Interactions
+- Hover entry: background → surface-hover, border → border-strong
+- Click company name: external link if available
+
+#### Animations
+- Timeline draws down on scroll (scaleY 0→1, 800ms, once)
+- Entries fade up with 100ms stagger
+
+#### Responsive
+- Timeline left-aligned on all breakpoints
+- Dot + content stack horizontally on mobile
+
+#### Accessibility
+- `<ol>` ordered list semantically
+- Dates in `<time datetime="...">` elements
+
+#### Performance
+- Pure CSS + HTML timeline — no Lottie
+- Server Component
+
+#### Premium Features
+- Company logos (monochrome) if assets available
+
+---
+
+### 5. Skills Section
+
+#### Purpose
+Communicate technical breadth without marquee cliché.
+
+#### Layout
+
+**Bento grid (4 columns desktop, 2 tablet, 1 mobile):**
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  EXPERTISE                                               │
+│  Tools I ship with.                                      │
+│                                                          │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐   │
+│  │  Frontend    │  │  Backend     │  │  Tools       │   │
+│  │  React       │  │  Node.js     │  │  Git         │   │
+│  │  Next.js     │  │  Express     │  │  Figma       │   │
+│  │  TypeScript  │  │  MongoDB     │  │  Firebase    │   │
+│  │  Tailwind    │  │              │  │              │   │
+│  └──────────────┘  └──────────────┘  └──────────────┘   │
+│                                                          │
+│  ┌────────────────────────────┐                        │
+│  │  Also experienced with     │                        │
+│  │  [Bootstrap] [MUI] [Redux] [Shadcn]                  │
+│  └────────────────────────────┘                        │
+└─────────────────────────────────────────────────────────┘
+```
+
+#### Categories
+
+| Category | Skills |
+|----------|--------|
+| Frontend | React, Next.js, TypeScript, Tailwind, Redux |
+| Backend | Node.js, Express, MongoDB |
+| Design & Tools | Git, Figma, Firebase, Shadcn, Bootstrap, Material UI |
+
+#### Hierarchy
+1. Category labels (heading-sm)
+2. Primary skills (large, with icons)
+3. Secondary skills (small badges)
+
+#### Interactions
+- Skill hover: icon color → primary, subtle scale 1.05
+- No infinite scroll
+
+#### Animations
+- Bento cells fade up with stagger on scroll
+- Icons: no animation at rest
+
+#### Responsive
+- 4-col → 2-col at `md` → 1-col at `sm`
+- "Also experienced" spans full width
+
+#### Accessibility
+- Grid is navigable via keyboard (tab through badges)
+- Icons have `aria-hidden`, text provides name
+
+#### Performance
+- Dynamic import skill SVGs — only 16 icons, not 70
+- Server Component with static SVG imports
+
+#### Premium Features
+- Proficiency indicators (optional, Phase 4): subtle bar, not stars
+
+---
+
+### 6. Projects Section
+
+#### Purpose
+Primary conversion driver — prove ability through shipped work.
+
+#### Layout
+
+**Featured grid (homepage):**
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  SELECTED WORK                                           │
+│  Products shipped to production.                         │
+│                                                          │
+│  ┌─────────────────────────┐  ┌─────────────────────┐   │
+│  │ [Screenshot - large]    │  │ [Screenshot]        │   │
+│  │ Mother of Peace         │  │ Start Visual        │   │
+│  │ AI · Next.js · MongoDB  │  │ React · Node        │   │
+│  │ Featured                │  │                     │   │
+│  └─────────────────────────┘  └─────────────────────┘   │
+│                                                          │
+│  ┌───────────────┐ ┌───────────────┐ ┌───────────────┐   │
+│  │ IndChess      │ │ Ninfa         │ │ Webloop       │   │
+│  └───────────────┘ └───────────────┘ └───────────────┘   │
+│                                                          │
+│              [View all work →]                           │
+└─────────────────────────────────────────────────────────┘
+```
+
+First project spans 2 columns (featured). See [Project Showcase](#project-showcase) for full spec.
+
+#### Hierarchy
+1. Mother of Peace (featured — largest)
+2. Start Visual (secondary featured)
+3. Remaining three projects
+4. "View all" link to `/work`
+
+#### Interactions
+- Card hover: elevation + image scale + "View case study →" reveal
+- Click: navigate to `/work/[slug]`
+- External demo link: icon button, opens new tab
+
+#### Animations
+- Cards scroll reveal with 100ms stagger
+- Hover: 400ms per [Card Hover spec](#card-hover)
+
+#### Responsive
+- Featured 2-col collapses to 1-col at `md`
+- Bottom 3 become horizontal scroll snap on mobile
+
+#### Accessibility
+- Each card is an `<article>` with heading
+- Demo links: `aria-label="View live demo of {project}"`
+
+#### Performance
+- Images: WebP, responsive srcset, lazy load (except first featured)
+- Blur placeholder via `placeholder="blur"`
+
+#### Premium Features
+- Filter by technology on `/work` page (Phase 3)
+- Case study depth pages (Phase 2)
+
+---
+
+### 7. Services Section (New)
+
+#### Purpose
+Convert freelance/client visitors; clarify offerings.
+
+#### Layout
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  SERVICES                                                │
+│  How I can help.                                         │
+│                                                          │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐      │
+│  │ Frontend    │  │ Full-Stack  │  │ Consulting  │      │
+│  │ Development │  │ Products    │  │ & Audits    │      │
+│  │             │  │             │  │             │      │
+│  │ React/Next  │  │ MERN stack  │  │ Performance │      │
+│  │ UI systems  │  │ APIs + DB   │  │ Code review │      │
+│  └─────────────┘  └─────────────┘  └─────────────┘      │
+│                                                          │
+│  [Start a project →]                                     │
+└─────────────────────────────────────────────────────────┘
+```
+
+#### Services Data
+
+| Service | Description | Tags |
+|---------|-------------|------|
+| Frontend Development | Production React/Next.js interfaces, design systems, performance optimization | React, Next.js, TypeScript |
+| Full-Stack Products | End-to-end MERN applications from architecture to deployment | Node.js, MongoDB, Express |
+| Consulting & Audits | Code review, performance audits, architecture guidance | Performance, Architecture |
+
+#### Hierarchy
+1. Service title
+2. Description
+3. Tags
+4. CTA to contact
+
+#### Interactions
+- Card hover: standard elevation
+- CTA scrolls to contact
+
+#### Animations
+- Scroll reveal stagger
+
+#### Responsive
+- 3-col → 1-col stack
+
+#### Accessibility
+- Each service is a `<article>` with heading
+
+#### Performance
+- Static content, Server Component
+
+#### Premium Features
+- Pricing indicator: "Starting projects from $X" (optional, user decision)
+
+---
+
+### 8. Testimonials Section (Optional — Phase 3)
+
+#### Purpose
+Third-party validation for hiring managers.
+
+#### Layout
+
+Single row carousel (Embla) or 2-column grid:
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  RECOMMENDATIONS                                         │
+│                                                          │
+│  "Sajjad delivered our frontend ahead of schedule..."    │
+│  — Client Name, Company                                  │
+│                                                          │
+│  [← →] pagination dots                                   │
+└─────────────────────────────────────────────────────────┘
+```
+
+#### Content Requirement
+Minimum 2 testimonials needed to render section. If unavailable, **omit section entirely** — never show placeholder.
+
+#### Interactions
+- Swipe on mobile
+- Arrow navigation on desktop
+- Auto-advance: **disabled** (accessibility)
+
+#### Accessibility
+- `aria-roledescription="carousel"`
+- Pause button if auto-advance ever enabled
+
+---
+
+### 9. Contact Section
+
+#### Purpose
+Convert interest into conversation.
+
+#### Layout
+
+**Desktop (2-column):**
+```
+┌─────────────────────────────┬─────────────────────────────┐
+│  GET IN TOUCH               │  Or reach me directly       │
+│                             │                             │
+│  [Name input    ]           │  ✉ sajukarim76@gmail.com    │
+│  [Email input   ]           │  📞 +92-3177144893          │
+│  [Message textarea]         │  📍 Rawalpindi, Pakistan    │
+│  [Turnstile]                │                             │
+│  [Send message →]           │  [GitHub] [LinkedIn] [X]    │
+└─────────────────────────────┴─────────────────────────────┘
+```
+
+#### Form Fields
+
+| Field | Validation | Max Length |
+|-------|------------|------------|
+| Name | Required, min 2 chars | 100 |
+| Email | Required, valid email | 100 |
+| Message | Required, min 10 chars | 1000 |
+
+#### Hierarchy
+1. Section title
+2. Form (primary conversion)
+3. Direct contact info (fallback)
+4. Social links
+
+#### Interactions
+- Submit: loading state on button, disable form
+- Success: Sonner toast + form reset
+- Error: inline field errors + toast
+
+#### Animations
+- Form fade in on scroll
+- Submit button: loading spinner, 360° rotate
+
+#### Responsive
+- 2-col → 1-col; direct contact info below form
+
+#### Accessibility
+- Labels linked via `htmlFor`/`id`
+- Errors in `aria-live="polite"` region
+- Turnstile accessible widget
+
+#### Performance
+- Form is client component (~12KB with RHF + Zod)
+- Submit via Server Action — no client email SDK
+
+#### Premium Features
+- Cal.com scheduling link as alternative CTA (Phase 4)
+- Map embed: **not approved** (adds weight, low value)
+
+---
+
+### 10. Footer
+
+#### Purpose
+Close the experience; provide legal/minimal navigation; reinforce brand.
+
+#### Layout
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  [■ Sajjad Karim]                                        │
+│                                                          │
+│  Work · About · Blog · Contact · Uses                    │
+│                                                          │
+│  © 2026 Sajjad Karim. Built with Next.js.              │
+│  sajukarim76@gmail.com                                   │
+│                                                          │
+│  [GitHub] [LinkedIn] [X]                                 │
+└─────────────────────────────────────────────────────────┘
+```
+
+**No template attribution.** Ever.
+
+#### Hierarchy
+1. Brand
+2. Nav links
+3. Copyright
+4. Social
+
+#### Interactions
+- Links: standard hover underline
+- Social: icon → primary color on hover
+
+#### Animations
+- None (static)
+
+#### Responsive
+- Center-aligned on mobile; left-aligned on desktop
+
+#### Accessibility
+- `<footer role="contentinfo">`
+- Social links have aria-labels
+
+#### Performance
+- Server Component, static
+
+---
+
+## Component Library
+
+### Buttons
+
+| Variant | Background | Border | Text | Radius | Usage |
+|---------|------------|--------|------|--------|-------|
+| `primary` | gradient-cta | none | primary-foreground | full | Main CTA |
+| `secondary` | transparent | border-default | neutral-200 | md | Secondary actions |
+| `ghost` | transparent | none | neutral-300 | md | Nav, subtle links |
+| `destructive` | error | none | white | md | Delete (admin only) |
+| `icon` | surface | border-default | neutral-300 | full | Icon-only 40×40 |
+
+**Sizes:** `sm` (32px), `md` (40px), `lg` (48px)
+
+**States:** default, hover, active, focus-visible, disabled, loading
+
+**Loading:** Spinner replaces label, button width preserved via min-width.
+
+### Cards
+
+| Variant | Usage |
+|---------|-------|
+| `default` | General content surface |
+| `project` | Project showcase with image slot |
+| `service` | Service offering |
+| `stat` | Metric display |
+| `testimonial` | Quote card |
+
+**Anatomy:** Optional image → eyebrow → title → description → footer (tags/actions)
+
+### Tags & Badges
+
+| Component | Spec |
+|-----------|------|
+| `Tag` | Mono font, radius-sm, border-default, px-2 py-1, text-mono-xs |
+| `Badge` | Primary-muted bg, primary text, radius-full, for "Featured" |
+| `AvailabilityBadge` | Green dot (8px) + text, pulse animation on dot |
+
+### Inputs
+
+| Component | Spec |
+|-----------|------|
+| `Input` | bg neutral-700, border-default, focus → border-accent + ring |
+| `Textarea` | Same as input, min-height 120px |
+| `Label` | text-body-sm, neutral-300, mb-2 |
+
+### Dialogs & Modals
+
+- Radix Dialog for command palette (Phase 4)
+- Vaul Drawer for mobile nav
+- Focus trap, escape to close, overlay click to close
+
+### Tooltips
+
+- Radix Tooltip, 200ms delay, mono font for keyboard shortcuts
+- Desktop only (`@media (hover: hover)`)
+
+### Navigation
+
+| Component | Purpose |
+|-----------|---------|
+| `NavLink` | Scroll-spy aware link with underline animation |
+| `MobileNav` | Vaul drawer content |
+| `CommandMenu` | ⌘K fuzzy finder (Phase 4) |
+
+### Timelines
+
+| Component | Purpose |
+|-----------|---------|
+| `Timeline` | Vertical line container |
+| `TimelineItem` | Dot + date + content card |
+
+### Statistics
+
+```
+┌──────────────┐
+│  5+          │  ← display-md, tabular-nums
+│  Years exp   │  ← caption, muted
+└──────────────┘
+```
+
+Hero stats: Years · Projects · Remote · Location
+
+### CTA Blocks
+
+Full-width pre-footer CTA (optional Phase 3):
+
+> Ready to build something great?
+> [Let's talk →]
+
+### Social Links
+
+| Component | Spec |
+|-----------|------|
+| `SocialLinks` | Row of icon buttons, 44px touch target, aria-labels |
+| Platforms | GitHub, LinkedIn, X (Twitter), Stack Overflow |
+
+---
+
+## Project Showcase
+
+### Grid System
+
+**Homepage:**
+- Row 1: 2/3 + 1/3 featured layout (2-column asymmetric)
+- Row 2: 3 equal columns
+- Gap: 32px desktop, 24px mobile
+
+**`/work` page:**
+- 2-column uniform grid
+- Filter bar above grid
+
+### Hover Animation
+
+See [Card Hover](#card-hover). Project-specific:
+- Image scale 1.03
+- Gradient overlay bottom 40%
+- Title remains visible; tags slide up 4px
+
+### Preview Strategy
+
+| Context | Strategy |
+|---------|----------|
+| Homepage card | Static WebP screenshot, lazy loaded |
+| Case study hero | Full-width screenshot, priority loaded |
+| Hover | No video preview v1 (Phase 5: optional WebM) |
+
+**Screenshot requirements per project:**
+- 16:10 aspect ratio
+- 2400×1500 source, served at responsive sizes
+- Browser chrome optional for web apps
+- Real product UI, not placeholder
+
+### Case Study Layout (`/work/[slug]`)
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  ← Back to work                                          │
+│                                                          │
+│  [Full-width hero screenshot]                            │
+│                                                          │
+│  Mother of Peace                                         │
+│  AI-powered spiritual community platform                 │
+│                                                          │
+│  Role: Full Stack Developer                              │
+│  Stack: Next.js · MongoDB · RTK · GPT                    │
+│  Live: motherofpeace.ai ↗                                │
+│                                                          │
+│  ─── Overview ───                                        │
+│  2-3 paragraphs of context                             │
+│                                                          │
+│  ─── Challenge ───                                       │
+│  What problem was solved                                 │
+│                                                          │
+│  ─── Solution ───                                        │
+│  Technical approach                                      │
+│                                                          │
+│  ─── Outcome ───                                         │
+│  Metrics if available; otherwise qualitative impact      │
+│                                                          │
+│  [Next project →]                                        │
+└─────────────────────────────────────────────────────────┘
+```
+
+### Technology Badges
+
+- Max 5 visible on card; overflow "+2" on hover tooltip
+- Mono font, tag component
+
+### Metrics (When Available)
+
+| Project | Suggested Metric |
+|---------|-----------------|
+| Mother of Peace | "AI chatbot trained on proprietary corpus" |
+| Start Visual | "Portfolio platform for creatives" |
+| IndChess | "Chess community for India" |
+| Ninfa | "REST API + admin panel" |
+| Webloop | "Agency website, production" |
+
+Never fabricate user counts. Use qualitative impact if metrics unavailable.
+
+### Filtering (`/work`)
+
+| Filter | Values |
+|--------|--------|
+| All | Default |
+| Next.js | Projects with Next.js |
+| React | Projects with React |
+| Full Stack | MERN projects |
+
+Filter: client-side, URL param `?filter=nextjs`, no page reload.
+
+### Featured Projects
+
+| Tier | Projects |
+|------|----------|
+| Featured (large) | Mother of Peace, Start Visual |
+| Standard | IndChess, Ninfa, Webloop |
+
+### Project Slugs
+
+| Project | Slug |
+|---------|------|
+| Mother of Peace | `mother-of-peace` |
+| Start Visual | `start-visual` |
+| IndChess | `indchess` |
+| Ninfa | `ninfa` |
+| Webloop | `webloop` |
+
+---
+
+## Responsiveness
+
+### Breakpoint Strategy
+
+| Name | Width | Target Devices |
+|------|-------|----------------|
+| `xs` | 0–639px | Mobile phones |
+| `sm` | 640–767px | Large phones, small tablets |
+| `md` | 768–1023px | Tablets |
+| `lg` | 1024–1279px | Laptops |
+| `xl` | 1280–1535px | Desktops |
+| `2xl` | 1536–1919px | Large desktops |
+| `3xl` | 1920px+ | Ultra-wide, 4K |
+
+### Desktop (1280px+)
+
+- Full layout, all columns
+- Magnetic button effects enabled
+- Mouse parallax on hero mesh
+- Max container: 1200px (xl), 1400px (2xl for project grid)
+
+### Laptop (1024–1279px)
+
+- 2-column layouts maintained
+- Slightly reduced display font sizes
+- Container: 1024px effective
+
+### Tablet (768–1023px)
+
+- 2-column → 1-column for about, contact
+- Skills bento: 2 columns
+- Projects: featured stack vertically
+- Mobile nav drawer (hamburger)
+
+### Mobile (0–767px)
+
+- Single column everything
+- Full-width CTAs
+- Projects: horizontal scroll snap
+- Hero: display-lg headline
+- Stats: 2×2 grid
+- Touch targets: minimum 44×44px
+- No magnetic effects
+- No parallax
+
+### Large Monitors (1920px+)
+
+- Container capped at 1400px
+- Increased section padding (--space-32)
+- No additional columns (readability limit)
+
+### Ultra-wide (2560px+)
+
+- Content remains centered
+- Background mesh extends full bleed
+- Optional: subtle side vignette to focus center
+
+---
+
+## Performance
+
+### Targets
+
+| Metric | Target |
+|--------|--------|
+| Lighthouse Performance | **100** |
+| Lighthouse Accessibility | **100** |
+| Lighthouse Best Practices | **100** |
+| Lighthouse SEO | **100** |
+| LCP | < 1.2s |
+| INP | < 100ms |
+| CLS | < 0.05 |
+| FCP | < 0.8s |
+| TTFB | < 200ms (Vercel edge) |
+| Total JS (first load) | < 100KB gzip |
+| Total page weight | < 800KB (homepage) |
+
+### Image Optimization
+
+| Rule | Spec |
+|------|------|
+| Format | AVIF primary, WebP fallback, PNG only for OG |
+| Sizing | `sizes` attribute on every next/image |
+| Lazy load | All below-fold images |
+| Priority | Hero: none (text LCP); case study hero: priority |
+| Placeholder | blurDataURL for all project screenshots |
+| CDN | Vercel Image Optimization or Cloudinary |
+
+### Font Optimization
+
+- `next/font` with `display: swap`
+- Subset: latin only
+- Preload: Geist Sans 400, 500 only
+- Display font (Instrument Serif): preload weight 400
+- Geist Mono: load on case study pages only (route-level)
+
+### JavaScript Budget
+
+| Bundle | Budget |
+|--------|--------|
+| Framework (React/Next shared) | ~45KB (unavoidable) |
+| Motion (LazyMotion + domMax) | ~25KB |
+| Lenis | ~8KB |
+| Header + form client islands | ~15KB |
+| Remaining | ~7KB |
+| **Total first-party** | **~55KB** (excluding framework) |
+
+### CSS
+
+- Tailwind v4 purge enabled
+- No SCSS
+- Critical CSS inlined by Next.js
+- Target: < 15KB CSS gzip
+
+### Animation Performance
+
+- Only animate `transform` and `opacity` (GPU composited)
+- No `transition: all`
+- `will-change` only during active animation, removed after
+- Intersection Observer for scroll triggers (not scroll event listeners except Lenis + nav threshold)
+
+### Hydration Strategy
+
+| Pattern | Usage |
+|---------|-------|
+| Server Components | All sections, layouts, static content |
+| Client islands | Header, form, animations, Lenis |
+| Dynamic import | Motion features, Turnstile, Embla (carousel) |
+| `ssr: false` | Lenis provider only |
+
+### Caching
+
+| Resource | Strategy |
+|----------|----------|
+| Static pages | Static generation at build |
+| dev.to blog | `revalidate: 3600` (1 hour ISR) |
+| Case studies | Static generation from content files |
+| API contact | No cache |
+| Images | `max-age=31536000, immutable` |
+
+---
+
+## SEO
+
+### Metadata (Root)
+
+```typescript
+// Spec reference — not implementation
+title: {
+  default: "Sajjad Karim — Product Engineer",
+  template: "%s · Sajjad Karim"
+}
+description: "Product engineer specializing in Next.js and MERN stack. Building scalable web applications from Rawalpindi, available worldwide."
+metadataBase: new URL("https://sajjadkarim.dev") // confirm domain
+```
+
+### OpenGraph
+
+| Field | Value |
+|-------|-------|
+| `og:type` | website |
+| `og:locale` | en_US |
+| `og:site_name` | Sajjad Karim |
+| `og:image` | Generated 1200×630 via `opengraph-image.tsx` |
+| `og:image:alt` | "Sajjad Karim — Product Engineer" |
+
+### Twitter Cards
+
+```
+card: summary_large_image
+creator: @sajjadcareem
+```
+
+### JSON-LD Schema
+
+**Person schema (homepage):**
+- `@type`: Person
+- `name`, `jobTitle`, `url`, `email`, `address`, `sameAs[]`
+
+**WebSite schema:**
+- `@type`: WebSite
+- `name`, `url`
+
+**CreativeWork schema (case studies):**
+- `@type`: CreativeWork
+- `name`, `author`, `url`, `dateCreated`
+
+### Sitemap
+
+Routes to include:
+- `/` (priority 1.0)
+- `/work` (0.9)
+- `/work/[slug]` × 5 (0.8)
+- `/blog` (0.7)
+- `/blog/[slug]` (0.6)
+- `/uses` (0.5)
+
+### Robots
+
+```
+User-agent: *
+Allow: /
+Disallow: /api/
+Sitemap: https://sajjadkarim.dev/sitemap.xml
+```
+
+### Canonical URLs
+
+Every page sets self-referencing canonical via metadata API.
+
+---
+
+## Accessibility
+
+### Keyboard Navigation
+
+| Key | Action |
+|-----|--------|
+| Tab | Move focus forward |
+| Shift+Tab | Move focus backward |
+| Enter/Space | Activate button/link |
+| Escape | Close drawer/modal |
+| ⌘K | Open command palette (Phase 4) |
+
+Tab order follows visual order. Skip link jumps to `<main>`.
+
+### ARIA
+
+- Landmarks: `header`, `nav`, `main`, `footer`
+- `aria-label` on icon-only buttons
+- `aria-current="true"` on active nav
+- `aria-expanded` on menu toggle
+- `aria-live="polite"` on form status
+- `role="alert"` on error toasts
+
+### Focus States
+
+```css
+/* Spec */
+focus-visible: {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+```
+
+Never remove focus outlines. Custom focus ring matches brand.
+
+### Contrast
+
+| Pairing | Ratio Target |
+|---------|-------------|
+| Body text on canvas | ≥ 7:1 (AAA) |
+| Muted text on canvas | ≥ 4.5:1 (AA) |
+| Primary button text | ≥ 4.5:1 |
+| Border non-text | ≥ 3:1 |
+
+Validate all token pairings in Phase 2.
+
+### Reduced Motion
+
+Global CSS:
+```css
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+Plus: disable Lenis, magnetic, parallax via `useReducedMotion` hook.
+
+### Screen Readers
+
+- H1 once per page
+- Heading hierarchy never skips levels
+- Images: descriptive alt text
+- Decorative images: `alt=""`
+- Form errors announced via live region
+
+---
+
+## Implementation Plan
+
+### Phase 1 — Foundation (Week 1–2)
+
+**Objective:** Unblock deploy, establish architecture, fix critical failures.
+
+| Deliverable | Details |
+|-------------|---------|
+| Next.js 15 + React 19 + TypeScript migration | Strict mode enabled |
+| Tailwind v4 + token file | All tokens from this spec |
+| File structure scaffold | As defined above |
+| Fix/remove broken API routes | Resend contact route |
+| Mobile navigation | Vaul drawer + hamburger |
+| Footer rebrand | Remove template credit |
+| Metadata + OG + favicon | SEO baseline |
+| Font loading | Geist Sans + Instrument Serif |
+| Remove dead dependencies | EmailJS, marquee, Lottie, toastify, react-icons |
+
+**Components:** `SiteHeader`, `SiteFooter`, `Container`, `Section`, `Button`, `NavLink`
+
+**Risks:** TypeScript migration may surface hidden bugs; Tailwind v4 breaking changes
+
+**Dependencies:** None external
+
+**Complexity:** Medium-High
+
+**Exit criteria:** `npm run build` passes; mobile nav works; Lighthouse SEO ≥ 90
+
+---
+
+### Phase 2 — Core Sections (Week 3–5)
+
+**Objective:** Rebuild homepage sections as premium Server Components with animation islands.
+
+| Deliverable | Details |
+|-------------|---------|
+| Hero section | Typography-led, stagger animation |
+| About section | Portrait + copy |
+| Experience timeline | Unified work + education |
+| Skills bento | Categorized grid |
+| Contact form | RHF + Zod + Server Action + Turnstile + Sonner |
+| Section scroll reveals | Motion whileInView |
+| Content migration | TypeScript content files |
+
+**Components:** All `sections/*`, `Timeline`, `SkillBadge`, `StatBlock`, `SocialLinks`, `ScrollReveal`
+
+**Risks:** Content writing delays; screenshot assets may not exist yet
+
+**Dependencies:** Phase 1 complete; Resend API key; Turnstile keys
+
+**Complexity:** High
+
+**Exit criteria:** Homepage fully functional; contact form delivers to correct email; a11y audit pass on forms
+
+---
+
+### Phase 3 — Project Showcase (Week 6–7)
+
+**Objective:** Visual project presentation and case study pages.
+
+| Deliverable | Details |
+|-------------|---------|
+| Project screenshots | WebP/AVIF for all 5 projects |
+| `ProjectsSection` | Featured asymmetric grid |
+| `/work` index | Filterable grid |
+| `/work/[slug]` | Case study template × 5 |
+| Project hover animations | Image scale + overlay |
+| Services section | 3-card grid |
+
+**Components:** `ProjectCard`, `CaseStudyHeader`, filter UI
+
+**Risks:** Screenshot creation bottleneck; case study copy depth
+
+**Dependencies:** Phase 2; real project images
+
+**Complexity:** Medium-High
+
+**Exit criteria:** All 5 projects have case study pages; project images on homepage
+
+---
+
+### Phase 4 — Motion & Polish (Week 8–9)
+
+**Objective:** Cinematic feel, smooth scroll, premium micro-interactions.
+
+| Deliverable | Details |
+|-------------|---------|
+| Lenis smooth scroll | Global provider |
+| Hero cinematic timeline | Full stagger spec |
+| Magnetic primary CTA | Desktop only |
+| Page transitions | AnimatePresence |
+| Navbar scroll-spy | Intersection Observer |
+| Blog pages | dev.to listing + article render |
+| `/uses` page | SEO content |
+| Testimonials (if content exists) | Embla carousel |
+| Command palette | ⌘K section jumper |
+| Light mode (optional) | next-themes |
+
+**Components:** `SmoothScroll`, `MagneticButton`, `PageTransition`, `CommandMenu`
+
+**Risks:** Over-animation; performance regression on mobile
+
+**Dependencies:** Phase 3; blog content verified on dev.to
+
+**Complexity:** Medium
+
+**Exit criteria:** Lighthouse Performance ≥ 95; reduced-motion compliant; scroll feels premium
+
+---
+
+### Phase 5 — Launch & Optimize (Week 10–11)
+
+**Objective:** 100 Lighthouse scores, production launch, analytics.
+
+| Deliverable | Details |
+|-------------|---------|
+| Performance audit | Bundle analyzer, image audit |
+| Lighthouse 100 pass | All categories |
+| Playwright E2E tests | Contact, nav, mobile |
+| Vitest unit tests | Validations, utils |
+| `@vercel/analytics` + Speed Insights | Production monitoring |
+| sitemap + robots + JSON-LD | Full SEO |
+| Custom domain + SSL | Production deploy |
+| OG image generation | Dynamic |
+| 404 page | Branded |
+| README + env documentation | Developer onboarding |
+
+**Risks:** Last-mile perf issues; domain DNS propagation
+
+**Dependencies:** All prior phases
+
+**Complexity:** Medium
+
+**Exit criteria:** Lighthouse 100 × 4; production live on custom domain; E2E tests green
+
+---
+
+### Phase Summary
+
+| Phase | Weeks | Focus | Risk Level |
+|-------|-------|-------|------------|
+| 1 | 1–2 | Foundation + unblock | Medium-High |
+| 2 | 3–5 | Homepage sections | High |
+| 3 | 6–7 | Projects + case studies | Medium-High |
+| 4 | 8–9 | Motion + blog + polish | Medium |
+| 5 | 10–11 | Launch + 100 scores | Medium |
+
+**Total estimated timeline:** 11 weeks (single senior engineer, full-time)
+
+---
+
+## Appendices
+
+### Appendix A: Content Migration Checklist
+
+- [ ] personalData → `content/personal.ts` (fix typos)
+- [ ] projectsData → `content/projects/` with slugs, screenshots, case study copy
+- [ ] experiences → `content/experience.ts` with descriptions
+- [ ] educations → merged into experience timeline
+- [ ] skillsData → categorized in `content/skills.ts`
+- [ ] services → new `content/services.ts`
+- [ ] testimonials → new `content/testimonials.ts` (if available)
+- [ ] resume.pdf → remain in `/public`
+- [ ] profile photo → convert to WebP
+
+### Appendix B: Environment Variables
+
+```env
+# Site
+NEXT_PUBLIC_SITE_URL=https://sajjadkarim.dev
+
+# Contact
+RESEND_API_KEY=
+CONTACT_EMAIL=sajukarim76@gmail.com
+
+# Turnstile
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=
+TURNSTILE_SECRET_KEY=
+
+# Analytics
+NEXT_PUBLIC_GTM=
+VERCEL_ANALYTICS=auto
+
+# Rate limiting (optional)
+UPSTASH_REDIS_REST_URL=
+UPSTASH_REDIS_REST_TOKEN=
+
+# dev.to
+DEVTO_USERNAME=Sajjad
+```
+
+### Appendix C: Lighthouse Audit Protocol
+
+Run on every PR merge to staging:
+
+1. Homepage (mobile + desktop)
+2. `/work/mother-of-peace` case study
+3. `/blog` listing
+4. `/contact` anchor on homepage
+
+Fail CI if any score drops below 95 in any category during Phase 5.
+
+### Appendix D: Pre-Launch Checklist
+
+- [ ] All 5 case studies published with real screenshots
+- [ ] Contact form tested end-to-end
+- [ ] Mobile nav tested on iOS Safari + Android Chrome
+- [ ] Reduced motion tested
+- [ ] Keyboard-only navigation tested
+- [ ] OG preview validated (opengraph.xyz)
+- [ ] JSON-LD validated (Google Rich Results Test)
+- [ ] 404 page tested
+- [ ] Resume download works from all routes
+- [ ] No template attribution anywhere
+- [ ] No hardcoded secrets in client bundle
+- [ ] Analytics receiving events
+
+### Appendix E: What Success Looks Like
+
+| Stakeholder | Success Signal |
+|-------------|---------------|
+| Recruiter | Finds contact in < 10 seconds; understands role and projects visually |
+| Senior engineer | Recognizes modern stack, RSC architecture, performance scores |
+| Client | Understands services; trusts professionalism from case studies |
+| Sajjad | Proud to share link; converts inbound interest |
+
+---
+
+**Document Status:** Complete — Ready for engineering execution.
+
+**No code was written. No files were modified except this specification.**
+
+**Companion analysis:** See `PORTFOLIO_ANALYSIS.mdx` for current-state audit.
+
+**Design system codename:** Aperture  
+**Brand target:** Sajjad Karim — Product Engineer  
+**Quality bar:** World-class personal brand experience

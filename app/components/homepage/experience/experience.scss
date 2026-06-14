@@ -1,0 +1,332 @@
+/* ─── Career / Experience section — premium timeline ─── */
+
+@keyframes career-spine-fill {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes career-node-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(61, 255, 184, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(61, 255, 184, 0);
+  }
+}
+
+/* ─── Background ─── */
+.career-bg__wash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 60% 45% at 80% 20%,
+    rgba(139, 92, 246, 0.05),
+    transparent 55%
+  );
+}
+
+.career-bg__glow--center {
+  position: absolute;
+  width: 24rem;
+  height: 24rem;
+  left: 50%;
+  top: 40%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: var(--color-primary-muted);
+  filter: blur(100px);
+  opacity: 0.5;
+}
+
+.career-bg__spine-glow {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  bottom: 20%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(61, 255, 184, 0.08),
+    transparent
+  );
+  opacity: 0.6;
+}
+
+@media (max-width: 1023px) {
+  .career-bg__spine-glow {
+    left: 1.25rem;
+    transform: none;
+  }
+}
+
+/* ─── Timeline spine ─── */
+.career-timeline {
+  position: relative;
+}
+
+.career-timeline__spine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 1.25rem;
+  width: 2px;
+  z-index: 0;
+}
+
+@media (min-width: 1024px) {
+  .career-timeline__spine {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.career-timeline__spine-track {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--border-strong) 8%,
+    var(--border-strong) 92%,
+    transparent
+  );
+  opacity: 0.5;
+}
+
+.career-timeline__spine-progress {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--color-primary),
+    rgba(61, 255, 184, 0.4)
+  );
+  transform-origin: top;
+  transform: scaleY(0);
+  opacity: 0.6;
+}
+
+html.reveal-enhanced [data-reveal="on"].is-revealed .career-timeline__spine-progress {
+  animation: career-spine-fill 1.4s var(--ease-out) 0.3s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.reveal-enhanced [data-reveal="on"].is-revealed .career-timeline__spine-progress {
+    transform: scaleY(1);
+    animation: none;
+  }
+}
+
+/* ─── Milestone layout ─── */
+.career-timeline__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .career-timeline__list {
+    gap: 3.5rem;
+  }
+}
+
+.career-milestone {
+  position: relative;
+  padding-left: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .career-milestone {
+    padding-left: 0;
+    width: calc(50% - 2.5rem);
+  }
+
+  .career-milestone--left {
+    margin-right: auto;
+    padding-right: 2rem;
+  }
+
+  .career-milestone--right {
+    margin-left: auto;
+    padding-left: 2rem;
+  }
+}
+
+/* Milestone stagger on reveal */
+html.reveal-enhanced [data-reveal="on"].is-revealed .career-milestone.section-reveal {
+  animation-delay: calc(var(--milestone-index, 0) * 120ms + 400ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.reveal-enhanced [data-reveal="on"].is-revealed .career-milestone.section-reveal {
+    animation-delay: 0ms;
+  }
+}
+
+/* ─── Timeline node ─── */
+.career-milestone__node {
+  position: absolute;
+  left: 0.625rem;
+  top: 1.75rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .career-milestone--left .career-milestone__node {
+    left: auto;
+    right: -3.35rem;
+  }
+
+  .career-milestone--right .career-milestone__node {
+    left: -3.35rem;
+  }
+}
+
+.career-milestone__node-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid rgba(61, 255, 184, 0.25);
+  transition: border-color var(--duration-normal) var(--ease-out);
+}
+
+.career-milestone__node-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--color-primary);
+  transition:
+    transform var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.career-milestone:hover .career-milestone__node-ring {
+  border-color: rgba(61, 255, 184, 0.6);
+}
+
+.career-milestone:hover .career-milestone__node-dot {
+  transform: scale(1.25);
+  animation: career-node-pulse 2s var(--ease-out) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .career-milestone:hover .career-milestone__node-dot {
+    transform: none;
+    animation: none;
+  }
+}
+
+/* ─── Connector between milestones ─── */
+.career-milestone__connector {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .career-milestone__connector {
+    display: block;
+    position: absolute;
+    top: 2.25rem;
+    height: calc(100% + 3.5rem);
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      rgba(61, 255, 184, 0.2),
+      transparent
+    );
+    opacity: 0;
+    transition: opacity var(--duration-slow) var(--ease-out);
+  }
+
+  .career-milestone--left .career-milestone__connector {
+    right: -2.85rem;
+  }
+
+  .career-milestone--right .career-milestone__connector {
+    left: -2.85rem;
+  }
+
+  .career-milestone:hover .career-milestone__connector {
+    opacity: 1;
+  }
+}
+
+/* ─── Milestone card ─── */
+.career-milestone__card {
+  position: relative;
+  z-index: 1;
+}
+
+.career-milestone__wash {
+  background: linear-gradient(
+    135deg,
+    rgba(61, 255, 184, 0.06),
+    rgba(139, 92, 246, 0.03)
+  );
+}
+
+.career-milestone__tech {
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    color var(--duration-normal) var(--ease-out),
+    background-color var(--duration-normal) var(--ease-out);
+}
+
+.career-milestone:hover .career-milestone__tech {
+  border-color: rgba(61, 255, 184, 0.2);
+}
+
+.career-milestone__badge {
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    background-color var(--duration-normal) var(--ease-out);
+}
+
+.career-milestone:hover .career-milestone__badge {
+  border-color: rgba(61, 255, 184, 0.15);
+  background-color: rgba(61, 255, 184, 0.04);
+}
+
+.career-milestone__card .group:hover {
+  box-shadow: var(--shadow-glow-primary);
+}
+
+/* ─── Phase intro chips ─── */
+.career-intro__phase {
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    color var(--duration-normal) var(--ease-out),
+    background-color var(--duration-normal) var(--ease-out);
+}
+
+.career-intro__phase:hover {
+  background-color: rgba(61, 255, 184, 0.04);
+}
+
+/* ─── Future panel ─── */
+.career-future__panel {
+  transition:
+    border-color var(--duration-slow) var(--ease-out),
+    box-shadow var(--duration-slow) var(--ease-out);
+}
+
+.career-future__panel:hover {
+  border-color: rgba(61, 255, 184, 0.2);
+  box-shadow: var(--shadow-glow-primary);
+}
+
+/* ─── Achievements ─── */
+.career-achievements .group:hover {
+  box-shadow: var(--shadow-medium);
+}

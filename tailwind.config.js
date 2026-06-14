@@ -1,33 +1,191 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./hooks/**/*.{js,ts,jsx,tsx}",
+    "./lib/**/*.{js,ts,jsx,tsx}",
+    "./config/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
+      colors: {
+        primary: {
+          DEFAULT: "var(--color-primary)",
+          hover: "var(--color-primary-hover)",
+          muted: "var(--color-primary-muted)",
+          foreground: "var(--color-primary-foreground)",
+        },
+        secondary: {
+          DEFAULT: "var(--color-secondary)",
+          muted: "var(--color-secondary-muted)",
+        },
+        accent: {
+          blue: "var(--color-accent-blue)",
+          amber: "var(--color-accent-amber)",
+        },
+        neutral: {
+          950: "var(--color-neutral-950)",
+          900: "var(--color-neutral-900)",
+          850: "var(--color-neutral-850)",
+          800: "var(--color-neutral-800)",
+          700: "var(--color-neutral-700)",
+          600: "var(--color-neutral-600)",
+          500: "var(--color-neutral-500)",
+          400: "var(--color-neutral-400)",
+          300: "var(--color-neutral-300)",
+          200: "var(--color-neutral-200)",
+          100: "var(--color-neutral-100)",
+          0: "var(--color-neutral-0)",
+        },
+        canvas: "var(--bg-canvas)",
+        subtle: "var(--bg-subtle)",
+        elevated: "var(--bg-elevated)",
+        overlay: "var(--bg-overlay)",
+        surface: {
+          DEFAULT: "var(--surface-default)",
+          hover: "var(--surface-hover)",
+          active: "var(--surface-active)",
+        },
+        foreground: "var(--text-foreground)",
+        muted: {
+          DEFAULT: "var(--text-muted)",
+          foreground: "var(--text-subtle)",
+        },
+        border: {
+          DEFAULT: "var(--border-default)",
+          strong: "var(--border-strong)",
+          accent: "var(--border-accent)",
+          error: "var(--border-error)",
+        },
+        success: "var(--color-success)",
+        warning: "var(--color-warning)",
+        error: "var(--color-error)",
+        info: "var(--color-info)",
+        glass: {
+          DEFAULT: "var(--glass-bg)",
+          border: "var(--glass-border)",
+        },
+      },
+      fontFamily: {
+        display: ["var(--font-display)"],
+        body: ["var(--font-body)"],
+        mono: ["var(--font-mono)"],
+      },
+      fontSize: {
+        "display-xl": [
+          "var(--text-display-xl-size)",
+          { lineHeight: "1.05", letterSpacing: "-0.03em", fontWeight: "400" },
+        ],
+        "display-lg": [
+          "var(--text-display-lg-size)",
+          { lineHeight: "1.08", letterSpacing: "-0.025em", fontWeight: "400" },
+        ],
+        "display-md": [
+          "var(--text-display-md-size)",
+          { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "400" },
+        ],
+        "heading-lg": [
+          "var(--text-heading-lg-size)",
+          { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "500" },
+        ],
+        "heading-md": [
+          "var(--text-heading-md-size)",
+          { lineHeight: "1.25", letterSpacing: "-0.015em", fontWeight: "500" },
+        ],
+        "heading-sm": [
+          "var(--text-heading-sm-size)",
+          { lineHeight: "1.3", letterSpacing: "-0.01em", fontWeight: "500" },
+        ],
+        "body-lg": ["var(--text-body-lg-size)", { lineHeight: "1.7" }],
+        "body-md": ["var(--text-body-md-size)", { lineHeight: "1.65" }],
+        "body-sm": ["var(--text-body-sm-size)", { lineHeight: "1.6" }],
+        caption: ["var(--text-caption-size)", { lineHeight: "1.5" }],
+        "mono-sm": ["var(--text-mono-sm-size)", { lineHeight: "1.5" }],
+        "mono-xs": ["var(--text-mono-xs-size)", { lineHeight: "1.4" }],
+        eyebrow: [
+          "var(--text-eyebrow-size)",
+          {
+            lineHeight: "1.4",
+            letterSpacing: "0.2em",
+            fontWeight: "500",
+            textTransform: "uppercase",
+          },
+        ],
+      },
+      borderRadius: {
+        sm: "var(--radius-sm)",
+        md: "var(--radius-md)",
+        lg: "var(--radius-lg)",
+        xl: "var(--radius-xl)",
+        "2xl": "var(--radius-2xl)",
+        "3xl": "var(--radius-3xl)",
+        full: "var(--radius-full)",
+      },
+      boxShadow: {
+        soft: "var(--shadow-soft)",
+        medium: "var(--shadow-medium)",
+        strong: "var(--shadow-strong)",
+        "glow-primary": "var(--shadow-glow-primary)",
+        "glow-ambient": "var(--shadow-glow-ambient)",
+        glass: "var(--shadow-glass)",
+        hover: "var(--shadow-hover)",
+      },
+      maxWidth: {
+        "container-sm": "var(--container-sm)",
+        "container-md": "var(--container-md)",
+        "container-lg": "var(--container-lg)",
+        "container-xl": "var(--container-xl)",
+        "container-2xl": "var(--container-2xl)",
+        "container-3xl": "var(--container-3xl)",
+        "container-content": "var(--container-content)",
+        "container-wide": "var(--container-wide)",
+        "container-hero": "var(--container-hero)",
+        reading: "var(--container-reading)",
+      },
+      spacing: {
+        18: "72px",
+        22: "88px",
+      },
+      transitionDuration: {
+        fast: "var(--duration-fast)",
+        normal: "var(--duration-normal)",
+        slow: "var(--duration-slow)",
+        slower: "var(--duration-slower)",
+        cinematic: "var(--duration-cinematic)",
+      },
+      transitionTimingFunction: {
+        out: "var(--ease-out)",
+        "in-out": "var(--ease-in-out)",
+      },
       backgroundImage: {
+        "gradient-hero": "var(--gradient-hero)",
+        "gradient-cta": "var(--gradient-cta)",
+        "gradient-divider": "var(--gradient-divider)",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-      container: {
-        center: true,
-        padding: {
-          DEFAULT: "1rem",
-          sm: "2rem",
-          lg: "3rem",
-          xl: "4rem",
-          "2xl": "4rem",
-          "3xl": "5rem",
-        },
+      zIndex: {
+        content: "var(--z-content)",
+        sticky: "var(--z-sticky)",
+        header: "var(--z-header)",
+        drawer: "var(--z-drawer)",
+        toast: "var(--z-toast)",
+        modal: "var(--z-modal)",
+        skip: "var(--z-skip)",
       },
-
-      extend: {
-        screens: {
-          "4k": "1980px",
-        },
+      screens: {
+        xs: "475px",
+        "3xl": "1920px",
+      },
+      gridTemplateColumns: {
+        "layout-desktop": "repeat(12, minmax(0, 1fr))",
+        "layout-tablet": "repeat(8, minmax(0, 1fr))",
+        "layout-mobile": "repeat(4, minmax(0, 1fr))",
+      },
+      gap: {
+        grid: "var(--space-6)",
+        "grid-lg": "var(--space-8)",
       },
     },
   },

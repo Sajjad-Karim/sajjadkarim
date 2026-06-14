@@ -1,62 +1,41 @@
-// @flow strict
-import { timeConverter } from "@/utils/time-converter";
-import Image from "next/image";
-import Link from "next/link";
-import { BsHeartFill } from "react-icons/bs";
-import { FaCommentAlt } from "react-icons/fa";
-
-function BlogCard({ blog }) {
-  return (
-    <div
-      style={{ display: "none" }}
-      className=" border border-[#1d293a] hover:border-[#464c6a] transition-all duration-500 bg-[#1b203e] rounded-lg relative group"
-    >
-      <div className="h-44 lg:h-52 w-auto cursor-pointer overflow-hidden rounded-t-lg">
-        <Image
-          src={blog?.cover_image}
-          height={1080}
-          width={1920}
-          alt=""
-          className="h-full w-full group-hover:scale-110 transition-all duration-300"
-        />
-      </div>
-      <div className="p-2 sm:p-3 flex flex-col">
-        <div className="flex justify-between items-center text-[#16f2b3] text-sm">
-          <p>{timeConverter(blog.published_at)}</p>
-          <div className="flex items-center gap-3">
-            <p className="flex items-center gap-1">
-              <BsHeartFill />
-              <span>{blog.public_reactions_count}</span>
-            </p>
-            {blog.comments_count > 0 && (
-              <p className="flex items-center gap-1">
-                <FaCommentAlt />
-                <span>{blog.comments_count}</span>
-              </p>
-            )}
-          </div>
-        </div>
-        <Link target="_blank" href={blog.url}>
-          <p className="my-2 lg:my-3 cursor-pointer text-lg text-white sm:text-xl font-medium hover:text-violet-500">
-            {blog.title}
-          </p>
-        </Link>
-        <p className="mb-2 text-sm text-[#16f2b3]">
-          {`${blog.reading_time_minutes} Min Read`}
-        </p>
-        <p className="text-sm lg:text-base text-[#d3d8e8] pb-3 lg:pb-6 line-clamp-3">
-          {blog.description}
-        </p>
-        {/* <div className="">
-          <Link target='_blank' href={blog.url}>
-            <button className='bg-violet-500 text-white px-3 py-1.5 rounded-full text-xs'>
-              Read More
-            </button>
-          </Link>
-        </div> */}
-      </div>
-    </div>
-  );
-}
-
-export default BlogCard;
+import Image from "next/image";
+import Link from "next/link";
+import { timeConverter } from "@/utils/time-converter";
+
+function BlogCard({ blog }) {
+  return (
+    <article className="group h-full overflow-hidden rounded-xl border border-border bg-surface/30 transition-hover hover:border-border-strong hover:bg-surface/50">
+      <Link href={`/blog/${blog.slug}`} className="flex h-full flex-col focus-ring rounded-xl">
+        <figure className="relative aspect-[16/10] overflow-hidden bg-canvas">
+          <Image
+            src={blog.cover_image}
+            height={400}
+            width={640}
+            alt={blog.title}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="h-full w-full object-cover transition-hover duration-slow group-hover:scale-[1.03]"
+          />
+        </figure>
+
+        <div className="flex flex-1 flex-col p-4 sm:p-5">
+          <div className="flex items-center justify-between gap-2 text-caption text-primary">
+            <time dateTime={blog.published_at}>{timeConverter(blog.published_at)}</time>
+            <span>{blog.reading_time_minutes} min read</span>
+          </div>
+
+          <h2 className="mt-3 type-h4 text-neutral-100 transition-hover group-hover:text-primary">
+            {blog.title}
+          </h2>
+
+          <p className="mt-2 flex-1 text-body-sm text-pretty text-muted line-clamp-3">
+            {blog.description}
+          </p>
+
+          <p className="mt-4 text-body-sm text-primary">Read article →</p>
+        </div>
+      </Link>
+    </article>
+  );
+}
+
+export default BlogCard;

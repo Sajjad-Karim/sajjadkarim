@@ -1,0 +1,283 @@
+@import "../../styles/experience-tokens.css";
+
+/* ─── Experience root ─── */
+.experience-root {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  background-color: var(--canvas-base);
+}
+
+/* ─── Global canvas (7 layers) ─── */
+.experience-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-base);
+  pointer-events: none;
+  overflow: hidden;
+  contain: strict;
+}
+
+.experience-canvas__base {
+  position: absolute;
+  inset: 0;
+  background-color: var(--canvas-base);
+}
+
+.experience-canvas__gradient {
+  position: absolute;
+  inset: 0;
+  background: var(--canvas-gradient);
+}
+
+.experience-canvas__noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.022;
+  mix-blend-mode: overlay;
+  background-image: var(--texture-noise);
+}
+
+.experience-noise {
+  background-image: var(--texture-noise);
+}
+
+.experience-canvas__depth {
+  position: absolute;
+  inset: 0;
+  background: var(--canvas-depth-top), var(--canvas-depth-bottom);
+}
+
+.experience-canvas__glow {
+  position: absolute;
+  inset: 0;
+}
+
+.experience-canvas__glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  transform: translateZ(0);
+}
+
+.experience-canvas__glow-orb--primary {
+  width: 28rem;
+  height: 28rem;
+  left: -8%;
+  top: 18%;
+  background: var(--color-primary-muted);
+  animation: experience-drift-a var(--motion-ambient) infinite;
+}
+
+.experience-canvas__glow-orb--secondary {
+  width: 24rem;
+  height: 24rem;
+  right: -6%;
+  top: 42%;
+  background: var(--color-secondary-muted);
+  animation: experience-drift-b calc(var(--motion-ambient) * 1.2) infinite;
+}
+
+.experience-canvas__glow-orb--accent {
+  width: 20rem;
+  height: 20rem;
+  left: 35%;
+  bottom: 8%;
+  background: rgba(61, 255, 184, 0.06);
+  animation: experience-drift-c calc(var(--motion-ambient) * 0.85) infinite;
+}
+
+.experience-canvas__grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.018;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.45) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.45) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(
+    ellipse 85% 75% at 50% 45%,
+    black 15%,
+    transparent 72%
+  );
+}
+
+.experience-canvas__ambient {
+  position: absolute;
+  inset: 0;
+  opacity: var(--ambient-intensity);
+  background: radial-gradient(
+    520px circle at var(--ambient-x) var(--ambient-y),
+    rgba(61, 255, 184, 0.55),
+    transparent 68%
+  );
+  transition: opacity var(--duration-slow) var(--ease-out);
+}
+
+/* ─── Section flow ─── */
+.experience-section {
+  position: relative;
+  z-index: var(--z-content);
+}
+
+.experience-section--wash::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 50% at 50% 50%,
+    rgba(15, 18, 24, 0.45),
+    transparent 70%
+  );
+  opacity: 0.6;
+}
+
+/* ─── Scroll reveal (progressive enhancement — visible by default) ─── */
+html.reveal-enhanced [data-reveal]:not([data-reveal="off"]) {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity var(--motion-enter),
+    transform var(--motion-enter);
+}
+
+html.reveal-enhanced [data-reveal]:not([data-reveal="off"]).is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.reveal-enhanced [data-reveal]:not([data-reveal="off"]) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ─── Section bridge (soft separator) ─── */
+.experience-bridge {
+  position: relative;
+  z-index: var(--z-content);
+  margin: var(--space-16) 0;
+  padding: var(--space-8) 0;
+}
+
+@media (min-width: 1024px) {
+  .experience-bridge {
+    margin: var(--space-24) 0;
+  }
+}
+
+.experience-bridge__glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 6rem;
+  width: 6rem;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--color-primary-muted);
+  filter: blur(48px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.experience-bridge__line {
+  height: var(--section-bridge-height);
+  background: var(--gradient-divider);
+  opacity: 0.9;
+}
+
+/* ─── Global micro-interaction utilities ─── */
+.interactive-lift {
+  transition:
+    transform var(--motion-micro),
+    box-shadow var(--motion-exit),
+    border-color var(--motion-exit),
+    opacity var(--motion-exit);
+}
+
+.interactive-lift:hover {
+  transform: translateY(-2px);
+}
+
+.interactive-lift:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.interactive-glow:hover {
+  box-shadow: var(--shadow-glow-primary);
+}
+
+/* ─── Depth surfaces ─── */
+.depth-surface-1 {
+  box-shadow: var(--elevation-1);
+}
+
+.depth-surface-2 {
+  box-shadow: var(--elevation-2);
+}
+
+.depth-surface-3 {
+  box-shadow: var(--elevation-3);
+}
+
+/* ─── Improved glass (global standard) ─── */
+.glass-premium {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+  box-shadow: var(--shadow-glass);
+}
+
+/* ─── Motion keyframes ─── */
+@keyframes experience-drift-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(3%, 2%) scale(1.03);
+  }
+  66% {
+    transform: translate(-2%, 4%) scale(0.98);
+  }
+}
+
+@keyframes experience-drift-b {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-4%, -3%);
+  }
+}
+
+@keyframes experience-drift-c {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(2%, -2%) scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-canvas__glow-orb--primary,
+  .experience-canvas__glow-orb--secondary,
+  .experience-canvas__glow-orb--accent {
+    animation: none;
+  }
+
+  .interactive-lift:hover,
+  .interactive-lift:active {
+    transform: none;
+  }
+}

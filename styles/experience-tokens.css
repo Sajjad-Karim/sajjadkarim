@@ -1,0 +1,74 @@
+/**
+ * Global experience CSS custom properties.
+ * Extends styles/tokens.css — imported via experience.scss.
+ */
+
+:root {
+  /* Scroll */
+  --scroll-padding: 5.5rem;
+  --scroll-smooth-duration: 600ms;
+
+  /* Global canvas */
+  --canvas-base: var(--bg-canvas);
+  --canvas-gradient: radial-gradient(
+      ellipse 120% 80% at 50% -30%,
+      rgba(139, 92, 246, 0.07),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 90% 60% at 90% 20%,
+      rgba(61, 255, 184, 0.04),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 70% 50% at 10% 80%,
+      rgba(61, 255, 184, 0.03),
+      transparent 45%
+    );
+  --canvas-depth-top: radial-gradient(
+    ellipse 100% 40% at 50% 0%,
+    rgba(255, 255, 255, 0.03),
+    transparent 70%
+  );
+  --canvas-depth-bottom: radial-gradient(
+    ellipse 100% 30% at 50% 100%,
+    rgba(3, 4, 6, 0.6),
+    transparent 70%
+  );
+
+  /* Ambient cursor light (updated via JS) */
+  --ambient-x: 50%;
+  --ambient-y: 40%;
+  --ambient-intensity: 0.035;
+
+  /* Section flow */
+  --section-bridge-height: 1px;
+  --section-flow-gap: 0px;
+
+  /* Depth elevation shortcuts */
+  --elevation-1: var(--shadow-soft);
+  --elevation-2: var(--shadow-medium);
+  --elevation-3: var(--shadow-strong);
+
+  /* Motion language (canonical) */
+  --motion-enter: var(--duration-slower) var(--ease-out);
+  --motion-exit: var(--duration-normal) var(--ease-out);
+  --motion-micro: var(--duration-fast) var(--ease-out);
+  --motion-ambient: 18s var(--ease-in-out);
+
+  /* Shared texture */
+  --texture-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ambient-intensity: 0;
+    --scroll-smooth-duration: 0ms;
+  }
+}
+
+@media (hover: none) {
+  :root {
+    --ambient-intensity: 0;
+  }
+}

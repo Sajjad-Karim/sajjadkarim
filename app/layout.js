@@ -1,33 +1,83 @@
 import { GoogleTagManager } from "@next/third-parties/google";
-import { Inter } from "next/font/google";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import {
+  Instrument_Serif,
+  Inter,
+  JetBrains_Mono,
+} from "next/font/google";
 import Footer from "./components/footer";
 import Navbar from "./components/navbar";
-import "./css/card.scss";
+import ClientProviders from "./components/providers/client-providers";
+import { GlobalCanvas } from "./components/experience";
+import {
+  createMetadata,
+} from "@/lib/metadata";
+import { createGlobalGraphJsonLd } from "@/lib/schema";
+import JsonLd from "./components/seo/json-ld";
 import "./css/globals.scss";
-import ScrollToTop from "./components/helper/scroll-to-top";
-const inter = Inter({ subsets: ["latin"] });
+import ScrollToTopLazy from "./components/helper/scroll-to-top-lazy";
 
-export const metadata = {
-  title: "Sajjad Karim",
-  description:
-    "This is the portfolio of Sajjad Karim. I am a MERN-stack web developer with a strong focus on frontend development. I specialize in crafting scalable architectures and high-performance applications. Passionate about learning new technologies and building efficient digital experiences, I am always open to collaboration and new challenges.",
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-instrument-serif",
+  display: "swap",
+  preload: false,
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+  preload: true,
+  adjustFontFallback: true,
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+  preload: false,
+});
+
+export const metadata = createMetadata();
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0A0C10",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }) {
+  const globalGraph = createGlobalGraphJsonLd();
+  const gtmId = process.env.NEXT_PUBLIC_GTM;
+
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ToastContainer />
-        <main className="min-h-screen relative mx-auto px-6 sm:px-12 lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] text-white">
-          <Navbar />
-          {children}
-          <ScrollToTop />
-        </main>
-        <Footer />
+    <html
+      lang="en"
+      className={`${instrumentSerif.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+    >
+      <body className="font-body antialiased">
+        <JsonLd data={globalGraph} />
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+        <div className="experience-root">
+          <GlobalCanvas />
+          <ClientProviders>
+            <Navbar />
+            <main
+              id="main-content"
+              className="relative z-content min-h-screen w-full"
+            >
+              {children}
+              <ScrollToTopLazy />
+            </main>
+            <Footer />
+          </ClientProviders>
+        </div>
+        {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
       </body>
-      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM} />
     </html>
   );
 }

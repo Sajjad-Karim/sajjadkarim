@@ -1,0 +1,302 @@
+/* ─── Skills / Technology ecosystem section ─── */
+
+@keyframes skills-hub-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes skills-orbit {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ─── Background ─── */
+.skills-bg__wash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 65% 50% at 30% 60%,
+    rgba(61, 255, 184, 0.04),
+    transparent 60%
+  );
+}
+
+.skills-bg__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.skills-bg__glow--left {
+  width: 18rem;
+  height: 18rem;
+  left: -4%;
+  top: 25%;
+  background: var(--color-primary-muted);
+  opacity: 0.45;
+}
+
+.skills-bg__glow--right {
+  width: 16rem;
+  height: 16rem;
+  right: -2%;
+  bottom: 15%;
+  background: var(--color-secondary-muted);
+  opacity: 0.4;
+}
+
+.skills-bg__grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.012;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.4) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.4) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 50%,
+    black 10%,
+    transparent 75%
+  );
+}
+
+/* ─── Intro pillars ─── */
+.skills-intro__pillar {
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    color var(--duration-normal) var(--ease-out),
+    background-color var(--duration-normal) var(--ease-out);
+}
+
+.skills-intro__pillar:hover {
+  background-color: rgba(61, 255, 184, 0.04);
+}
+
+/* ─── Ecosystem layout ─── */
+.skills-ecosystem__layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.skills-ecosystem__hub {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 16rem;
+  aspect-ratio: 1;
+}
+
+@media (min-width: 1024px) {
+  .skills-ecosystem__layout {
+    gap: 2.5rem;
+  }
+
+  .skills-ecosystem__hub {
+    max-width: 18rem;
+  }
+}
+
+.skills-ecosystem__hub-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px dashed rgba(61, 255, 184, 0.2);
+  animation: skills-orbit 48s linear infinite;
+}
+
+.skills-ecosystem__hub-ring::before {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  border: 1px solid rgba(61, 255, 184, 0.12);
+  animation: skills-hub-pulse 8s var(--ease-in-out) infinite;
+}
+
+.skills-ecosystem__hub-core {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 72%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid rgba(61, 255, 184, 0.25);
+  background: rgba(15, 18, 24, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-glow-primary);
+  padding: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .skills-ecosystem__hub {
+    position: relative;
+    top: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-ecosystem__hub-ring {
+    animation: none;
+  }
+
+  .skills-ecosystem__hub-ring::before {
+    animation: none;
+  }
+}
+
+/* ─── Domain bento grid ─── */
+.skills-ecosystem__grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .skills-ecosystem__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .skills-domain--featured {
+    grid-column: span 2;
+  }
+}
+
+/* Domain stagger on reveal */
+html.reveal-enhanced [data-reveal="on"].is-revealed .skills-domain.section-reveal {
+  animation-delay: calc(var(--domain-index, 0) * 60ms + 300ms);
+}
+
+html.reveal-enhanced [data-reveal="on"].is-revealed .skills-ai__item.section-reveal {
+  animation-delay: calc(var(--ai-index, 0) * 70ms + 400ms);
+}
+
+html.reveal-enhanced [data-reveal="on"].is-revealed .skills-workflow__step.section-reveal {
+  animation-delay: calc(var(--step-index, 0) * 50ms + 450ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.reveal-enhanced [data-reveal="on"].is-revealed .skills-domain.section-reveal,
+  html.reveal-enhanced [data-reveal="on"].is-revealed .skills-ai__item.section-reveal,
+  html.reveal-enhanced [data-reveal="on"].is-revealed .skills-workflow__step.section-reveal {
+    animation-delay: 0ms;
+  }
+}
+
+/* ─── Domain cards ─── */
+.skills-domain__wash {
+  background: linear-gradient(
+    135deg,
+    rgba(61, 255, 184, 0.05),
+    rgba(139, 92, 246, 0.03)
+  );
+}
+
+.skills-domain__tech {
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    color var(--duration-normal) var(--ease-out);
+}
+
+.skills-domain .group:hover {
+  box-shadow: var(--shadow-glow-primary);
+}
+
+/* ─── AI panel ─── */
+.skills-ai__panel {
+  transition:
+    border-color var(--duration-slow) var(--ease-out),
+    box-shadow var(--duration-slow) var(--ease-out);
+}
+
+.skills-ai__panel:hover {
+  border-color: rgba(61, 255, 184, 0.3);
+}
+
+.skills-ai__item .group:hover {
+  box-shadow: var(--shadow-medium);
+}
+
+/* ─── Workflow pipeline ─── */
+.skills-workflow__list {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.skills-workflow__list::-webkit-scrollbar {
+  display: none;
+}
+
+.skills-workflow__card {
+  position: relative;
+}
+
+.skills-workflow__connector {
+  position: absolute;
+  top: 50%;
+  right: -0.75rem;
+  width: 0.75rem;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(61, 255, 184, 0.5),
+    rgba(61, 255, 184, 0.15)
+  );
+  transform: translateY(-50%);
+}
+
+.skills-workflow__connector::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 4px solid transparent;
+  border-left-color: rgba(61, 255, 184, 0.4);
+}
+
+.skills-workflow__card:hover {
+  box-shadow: var(--shadow-soft);
+  border-color: rgba(61, 255, 184, 0.15);
+}
+
+/* ─── Strengths & future ─── */
+.skills-strengths .group:hover {
+  box-shadow: var(--shadow-medium);
+}
+
+.skills-future__panel {
+  transition:
+    border-color var(--duration-slow) var(--ease-out),
+    box-shadow var(--duration-slow) var(--ease-out);
+}
+
+.skills-future__panel:hover {
+  border-color: rgba(61, 255, 184, 0.15);
+}
